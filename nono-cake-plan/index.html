@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOno Cake 私域运营方案</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: #FDFBF7;
+    color: #3D2B1F;
+    line-height: 1.6;
+    padding-bottom: 60px;
+    min-height: 100vh;
+}
+
+/* Navigation */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #3D2B1F;
+    color: white;
+    z-index: 1000;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+
+.nav-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    height: 50px;
+}
+
+.nav-brand {
+    font-weight: 700;
+    font-size: 16px;
+    white-space: nowrap;
+    margin-right: 24px;
+    color: #FFFFFF;
+    letter-spacing: -0.2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-brand img {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-links {
+    display: flex;
+    gap: 0;
+    overflow: visible;
+}
+
+.nav-links > .nav-item {
+    position: relative;
+}
+
+.nav-links > .nav-item > a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 6px 16px;
+    white-space: nowrap;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    display: block;
+    letter-spacing: -0.1px;
+    border-radius: 20px;
+    margin: 8px 4px;
+}
+
+.nav-links > .nav-item > a:hover,
+.nav-links > .nav-item.active > a {
+    color: #FFFFFF;
+    background: rgba(255,255,255,0.15);
+}
+
+.nav-links > .nav-item.active > a {
+    background: rgba(255,255,255,0.2);
+}
+
+/* Dropdown */
+.nav-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #FFFFFF;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.06);
+    border-radius: 8px;
+    padding: 6px 8px;
+    min-width: auto;
+    z-index: 1001;
+    border: 1px solid #E8DDD0;
+    flex-direction: row;
+    gap: 4px;
+}
+
+.nav-dropdown.show {
+    display: flex;
+}
+
+.nav-dropdown a {
+    display: block;
+    color: #3D2B1F;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 6px 14px;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+    border-radius: 6px;
+}
+
+.nav-dropdown a:hover {
+    color: #C4956A;
+    background: #FFF8F0;
+}
+
+/* Main Content */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 70px 16px 40px;
+}
+
+/* Chapter */
+.chapter {
+    margin-bottom: 36px;
+}
+
+/* Chapter Header */
+.chapter-header {
+    padding: 32px 0 20px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #F0E6DA;
+}
+
+.chapter-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #3D2B1F;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    padding-left: 16px;
+    border-left: 4px solid #C4956A;
+    border-radius: 2px;
+}
+
+.chapter-subtitle {
+    font-size: 13px;
+    color: #A89888;
+    margin-top: 6px;
+    padding-left: 20px;
+    letter-spacing: 0.5px;
+}
+
+/* Stage Section */
+.stage-section {
+    margin-bottom: 24px;
+}
+
+/* Stage titles */
+.stage-title {
+    font-size: 17px;
+    color: #5D4E37;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    border-left: 3px solid #E8A87C;
+    font-weight: 600;
+    background: #FFF8F0;
+    letter-spacing: -0.2px;
+}
+
+/* Action Card */
+.action-card {
+    background: #FFFFFF;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    overflow: hidden;
+    border: 1px solid #F0E6DA;
+    transition: all 0.25s ease;
+}
+
+.action-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.action-summary {
+    padding: 14px 16px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+    color: #3D2B1F;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    user-select: none;
+    transition: color 0.2s;
+}
+
+.action-summary::-webkit-details-marker {
+    display: none;
+}
+
+.action-summary::before {
+    content: "\25B6";
+    font-size: 11px;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+    color: #C4956A;
+}
+
+details[open] > .action-summary::before {
+    transform: rotate(90deg);
+}
+
+.action-content {
+    padding: 0 16px 16px;
+    border-top: 1px solid #F0E6DA;
+}
+
+/* Tags */
+.tag {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 12px;
+    margin-bottom: 4px;
+    letter-spacing: 0.3px;
+}
+
+.tag-plan {
+    background: #FFF0E5;
+    color: #C47A3A;
+    border: none;
+}
+
+.tag-result {
+    background: #E8F5E9;
+    color: #2E7D32;
+    border: none;
+}
+
+.tag-reason {
+    background: #F3E5F5;
+    color: #7B1FA2;
+    border: none;
+}
+
+.tag-content {
+    font-size: 14px;
+    color: #5D4E37;
+    line-height: 1.7;
+    padding-left: 4px;
+}
+
+/* Time Badge */
+.time-badge {
+    font-size: 12px;
+    font-weight: 400;
+    color: #5D4E37;
+    background: #FFF8F0;
+    padding: 2px 10px;
+    border-radius: 20px;
+    border: none;
+}
+
+/* Priority */
+.priority-high {
+    font-size: 12px;
+    font-weight: 600;
+    color: #C62828;
+    background: #FFF0F0;
+    padding: 2px 10px;
+    border-radius: 20px;
+    border: none;
+}
+
+.priority-medium {
+    font-size: 12px;
+    font-weight: 600;
+    color: #E65100;
+    background: #FFF8F0;
+    padding: 2px 10px;
+    border-radius: 20px;
+    border: none;
+}
+
+/* Note */
+.note {
+    background: #FFF8F0;
+    border-left: 2px solid #C4956A;
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #5D4E37;
+}
+
+/* Back to top button */
+.back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    background: #C4956A;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    transition: all 0.25s ease;
+}
+
+.back-to-top:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    background: #B8865A;
+}
+
+.back-to-top.show {
+    display: flex;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .nav-brand {
+        font-size: 14px;
+        margin-right: 16px;
+        color: #FFFFFF;
+    }
+    .nav-links > .nav-item > a {
+        font-size: 13px;
+        padding: 5px 12px;
+        margin: 8px 2px;
+        color: rgba(255,255,255,0.85);
+    }
+    .nav-links > .nav-item > a:hover,
+    .nav-links > .nav-item.active > a {
+        color: #FFFFFF;
+        background: rgba(255,255,255,0.15);
+    }
+    .chapter-header h1 {
+        font-size: 22px;
+    }
+    .chapter-subtitle {
+        font-size: 12px;
+    }
+    .stage-title {
+        font-size: 15px;
+    }
+    .action-summary {
+        font-size: 14px;
+        padding: 12px 14px;
+    }
+    .tag-content {
+        font-size: 13px;
+    }
+    .back-to-top {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        bottom: 16px;
+        right: 16px;
+    }
+    .nav-dropdown {
+        position: fixed;
+        top: 50px;
+        left: 0;
+        right: 0;
+        border-radius: 0;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+        padding: 8px 12px;
+        gap: 6px;
+    }
+    .nav-dropdown a {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+}
+
+/* Nav hint animation */
+.nav-hint {
+    position: fixed;
+    top: 58px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(61,43,31,0.92);
+    color: #FFFFFF;
+    font-size: 13px;
+    padding: 8px 20px;
+    border-radius: 20px;
+    z-index: 1002;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    white-space: nowrap;
+}
+.nav-hint.show {
+    opacity: 1;
+    animation: hintBounce 1.5s ease infinite;
+}
+.nav-hint::before {
+    content: '👆 ';
+}
+@keyframes hintBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-6px); }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation hint -->
+<div class="nav-hint" id="navHint">点击导航栏切换章节</div>
+
+<!-- Navigation -->
+<nav class="nav">
+<div class="nav-inner">
+<span class="nav-brand"><img src="logo.jpg" alt="NOno Cake">NOno Cake</span>
+<div class="nav-links">
+<div class="nav-item" data-menu="menu1">
+<a href="javascript:void(0)">获客方案</a>
+<div class="nav-dropdown" id="menu1">
+<a href="#s1-1" onclick="scrollToAnchor('s1-1')">起步测试期</a>
+<a href="#s1-2" onclick="scrollToAnchor('s1-2')">私域运营</a>
+<a href="#s1-3" onclick="scrollToAnchor('s1-3')">成长期</a>
+<a href="#s1-4" onclick="scrollToAnchor('s1-4')">成熟期</a>
+</div>
+</div>
+<div class="nav-item" data-menu="menu2">
+<a href="javascript:void(0)">生命周期</a>
+<div class="nav-dropdown" id="menu2">
+<a href="#s2-1" onclick="scrollToAnchor('s2-1')">引入期</a>
+<a href="#s2-2" onclick="scrollToAnchor('s2-2')">成长期</a>
+<a href="#s2-3" onclick="scrollToAnchor('s2-3')">成熟期</a>
+<a href="#s2-4" onclick="scrollToAnchor('s2-4')">休眠期</a>
+</div>
+</div>
+<div class="nav-item" data-menu="menu3">
+<a href="javascript:void(0)">时间表</a>
+<div class="nav-dropdown" id="menu3">
+<a href="#s3-1" onclick="scrollToAnchor('s3-1')">第一批</a>
+<a href="#s3-2" onclick="scrollToAnchor('s3-2')">第二批</a>
+<a href="#s3-3" onclick="scrollToAnchor('s3-3')">第三批</a>
+</div>
+</div>
+</div>
+</div>
+</nav>
+
+<div class="container">
+
+<!-- Chapter 1 -->
+<div class="chapter" id="chapter1">
+<div class="chapter-header">
+<h1>NOno Cakes私域运营方案</h1>
+<p class="chapter-subtitle">不定时更新</p>
+</div>
+<div class="stage-section">
+<h2 class="stage-title" id="s1-1">起步测试期<br>(0-500人)</h2>
+<details class="action-card">
+<summary class="action-summary">1. 亲友种子裂变</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">不要只让现有的亲友发朋友圈硬广，而是制作一批高颜值的「试吃装」。请亲友带给他们的同事或邻居。包装里附带一张卡片：「给你的专属福利，扫码加微信领新人20元无门槛立减券」。这个前期先备注告诉他因为你是谁谁推荐来的谁谁的朋友给你送优惠，不要跟别人说</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">假设30位亲友愿意帮忙，每人送出3份，能触达90个同城精准目标，预计转化加微40-50人。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">利用亲友的信用背书，转化率远高于陌生人地推，不伤人脉，且触达的都是有真实消费能力的本地人。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">2. 地推</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">制作小一点的蛋糕或小切件。选定夜市、小区门口、写字楼一楼或学校门口、幼儿园放学点。<br>话术1：「您好，我们是新开的纯手工蛋糕店，今天做试吃。加微信送您刚出炉的蛋糕和15元新人券。我们的蛋糕都是明码标价，您可以先在朋友圈看看我们的用料还有顾客评价。」<br>话术2：「你好，我们是附近新开的蛋糕店，主打进口动物奶油低糖蛋糕，您加我微信可以免费试吃一块。然后再送您一张15元无门槛优惠券，生日定制蛋糕、便当甜点都能用，一周内有效。」</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">每次出摊1.5-2小时，每天准备30-50份试吃（依据情况而定），预计加微40-45人（贪便宜的人多）。单客获客成本约4-6元（蛋糕成本加人工成本）。2周内做3-4次地推，累计加60-100人左右，总成本约240-600元。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">降低首次品尝门槛。真诚透明的标价和出色的口味能自动淘汰纯「羊毛党」，留下真正认可产品的人。定位是中高端动物奶油蛋糕，试吃是最好的「信任背书」——入口的东西，好不好吃一试就知道。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">3. 异业资源共享</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">周边1公里内客群重合但无竞争的店铺（如：饭店、咖啡店、花店、美发店、剧本杀等）跟老板谈合作：你提供一个「联合福利」——你店里的顾客买蛋糕加他们微信可以领福利（比如买花减5元），他们的顾客买花/奶茶加你微信可以领你的15元蛋糕优惠券。或者你们可以联合推出一个套餐，买花加上蛋糕当成一个组合商品。你跟花店/奶茶店那边谈一下看看能不能放一个带二维码的台卡，上面写「扫码加好友，领15元蛋糕券，进口动物奶油低糖定制」。你跟他们说我们新开的蛋糕店就在附近，你的顾客和我的顾客很重合，我们互相放个二维码，我帮你引流你帮我引流你看有没有意向。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">每家合作店预计每周带来5-10个加微信，3-5家合作店2周约加30-100人。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">这个说白了就是资源互换，买花的人和买奶茶的人起码有一半是你的客户群体，且有合作商家的高端环境做背书，极大缩短信任周期。花店老板也缺客流，互惠互利。另外，和他们去合作后续对邻里关系是有好处的。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">4. 打造「真人」朋友圈</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">不要每条都发一样的内容。每天发3-4条，比例定为：40%精美产品图，30%制作过程（打蛋、抹胚、极其干净的案台、新鲜水果、拍烤箱等等），20%真实好评截图，10%店主个人生活或研发碎碎念（比如今天的天气，店门口的小猫，小狗，今天遇到什么事情之类的）。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">增加在顾客那边的曝光度，让顾客不会屏蔽你</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">这样发就是为了增加顾客的印象，因为你不是堂食。你也没办法做到透明厨房的概念，那你发这一套下来，可以让顾客了解到你，增加印象说白了。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">5. 小红书同城种草</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">【内容规划】每周发3-4篇，至少坚持8周：<br>• 类型A 颜值种草帖（40%）：拍蛋糕成品图，用自然光拍摄，背景简洁。每篇配3-6张图，首图是最漂亮的蛋糕切面或整体图。标题举例：「莆田定制蛋糕 | 这款草莓奶油蛋糕绝了」「低糖蛋糕也能这么好吃 | 莆田宝藏蛋糕店」「也可以放店抽象文案」<br>• 类型B 制作过程帖（30%）：拍奶油打发、抹面、裱花过程，用手机支架固定拍摄15-30秒短视频或一组过程图。标题举例：「一块定制蛋糕的诞生 | 从奶油到成品」<br>• 类型C 干货知识帖（20%）：分享「怎么选蛋糕奶油」「低糖蛋糕和普通蛋糕的区别」「蛋糕保存小技巧」等，容易被收藏，提升账号权重<br>• 类型D 门店日常帖（10%）：拍店面、包装过程、顾客取蛋糕的开心瞬间，打造「真人」温度感<br><br>【本地标签策略】每篇笔记必带：<br>#莆田蛋糕 #莆田定制蛋糕 #莆田甜品 #莆田城厢区 #莆田生日蛋糕，把你能想到的都加上<br>根据内容再加：#低糖蛋糕 #动物奶油蛋糕 #莆田探店 #莆田美食推荐<br>关键词布局：标题和正文前50字中植入「莆田+蛋糕+需求」的长尾词，如「莆田城厢区生日蛋糕推荐」「莆田低糖定制蛋糕」。布局长尾词的商家搜索曝光率可以提升60%以上<br><br>【引流到微信的合规路径】<br>第一步：用户看到笔记后私信咨询<br>第二步：回复时引导用户查看主页的「社媒名片」（小红书官方允许的导流方式），或回复「可以看主页哦~」<br>第三步：社媒名片中放微信号，用户自行添加<br>注意：绝不在私信中直接发微信号或「加我微信」等字样，否则会被限流甚至封号。还有放那个瞬间，这个到时候我可以给你设置之前要设置忘记了</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">坚持8周后，预计每周获得5-15个同城咨询，转化率约30%-50%，即每周新增2-8个微信好友。8周累计新增约50-100个精准同城好友。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">小红书用户以女性为主（这个是有数据的），正好是我们定制蛋糕的核心消费群体。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">6. 抖音同城获客（这个待定吧）</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">【账号设置】<br>注册抖音账号用个人号带定位发布。账号名与小红书保持一致：「NOno Cake 莆田定制蛋糕」。<br><br>【内容规划】每周发2-3条短视频：<br>• 视频1 蛋糕制作过程（最核心内容）：用手机拍摄奶油打发、抹面、裱花、装饰全过程，加速剪辑成30-60秒。配上轻音乐和文字说明「进口动物奶油 | 低糖配方 | 莆田定制」。这类内容在同城流量中表现最好，因为展示了「手作真实感」<br>• 视频2 做解压视频，比如就拍每个蛋糕抹面的那一段。<br>• 视频3 做成品蛋糕展示，我之前看过一个鲜花的视频，他不露脸就是做一个举花束的动作，然后配合剪辑，那个画面冲击是很强的。我们也可以尝试做一下。<br>• 视频4 幕后花絮：拍店主忙碌的一天、凌晨开始做蛋糕、试新品等，打造「创业日记」人设<br><br>【POI挂载方法】<br>每条视频发布时，点击「添加位置」，搜索「NOno Cake 烘培」，挂载门店POI。抖音同城算法已进入「地理精准匹配+内容价值加权」阶段，带定位的视频会被优先推给附近5-10公里内有相关兴趣的用户。<br><br>【引流到微信】<br>抖音主页简介中写「定制蛋糕请私信」或「V：NonoCake（用谐音或图标代替微信二字）」。用户私信后，回复产品图和价格，引导加微信沟通细节。注意：抖音对导流也有管控，不要在视频画面中直接展示微信号。然后在对话中也少说微信，vx等等敏感词，一样可以发动态去展示微信<br><br>【低成本Dou+投放（可选）】<br>挑选自然数据好的视频（播放量&gt;500），投100元Dou+，选择「同城+18-45岁+女性」，精准覆盖莆田城厢区5公里范围。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">坚持发布8周后，预计每条视频平均播放量200-1000如果没有那就要看怎么改内容，甚至换号。八周为一个节点，没有效果就换。预计每周获得3-10个私信咨询，转化率20%-40%，每周新增1-4个微信好友。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">抖音同城流量是本地商家最大的免费流量池之一，短视频形式比图文更能展示蛋糕的质感和制作过程。抖音用户覆盖面更广，可以触达小红书覆盖不到的年龄层比如男朋友要给他们的女朋友买东西，大部分都会先开抖音去搜索。POI挂载让用户可以直接看到店铺位置，降低决策门槛。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">7. 美团/大众点评入驻</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">【入驻步骤】（1-2天完成）<br>1. 在应用商店下载「美团开店宝」APP<br>2. 注册账号，搜索「NOno Cake」进行店铺认领；如果没有，点击「创建新店铺」<br>3. 上传门头照片、店内环境照片（至少5张，光线要好）<br>4. 上传营业执照和食品经营许可证（必备资质）<br>5. 填写营业时间、联系电话、地址等信息<br>6. 提交审核，一般1-3个工作日通过<br><br>【团购套餐设计】（3个套餐，覆盖不同消费场景）<br>套餐1「新客尝鲜套餐」：2个小甜品（如便当盒+小🗃️蛋糕），原价80元，团购价50元（甚至更低） → 目的：引流到店，降低首次尝试门槛<br>套餐3「定制蛋糕抵用券」：满200减30元，0.01元限时购 → 目的：引导用户购买高利润的定制蛋糕当作一个钩子。也更好的让顾客加微信促成交<br><br>【引导好评策略】<br>顾客取蛋糕时，随包装附赠一张手写小卡片：「如果您觉得好吃，希望您能在美团/大众点评给个好评，截图发给我，下次下单送1个小甜品~」（成本约5-8元，但一个高质量好评价值远超这个成本）。<br>针对LV4以上的大众点评会员（高影响力用户），额外赠送小甜品。LV4以上用户的评价权重是普通用户的3-5倍<br>收到好评后，在店铺页面及时回复，增加互动率。<br><br>【店铺装修优化】<br>上传至少10张高质量图片：门头、店内环境、产品特写（每个主打产品都拍）、包装展示。在商户简介中突出差异化卖点：「进口动物奶油 | 低糖低脂 | 定制蛋糕」。设置营业时间与实际一致，避免顾客白跑一趟。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">入驻后1-2个月内，预计每月获得20-50个平台订单。好评积累到10条以上后，店铺在本地搜索排名会明显提升。19.9元套餐预计每月带来30-60个新客到店。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">美团/大众点评是本地生活搜索的第一入口，用户主动搜索「蛋糕」时，有店铺的商家才能被看到。团购套餐是最低成本的「试错」方式，用户花低价就能体验产品，远比发传单有效。超过70%的蛋糕店都已入驻美团/大众点评</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">9. 隐藏菜单/暗号玩法</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">【设计隐藏菜单】（3款产品循环推出）<br>每月推出1款「隐藏款」产品，不在正常菜单上显示，只有知道暗号的顾客才能点。举例：<br>• 1月隐藏款：「云朵舒芙蕾」——暗号「今天天气真好」<br>• 2月隐藏款：「玫瑰荔枝慕斯」——暗号「情人节快乐」<br>• 3月隐藏款：「抹茶白巧千层」——暗号「春天来了」<br>隐藏款定价与常规产品持平或略低（不靠隐藏款赚钱，靠它制造话题和复购动力）。每款隐藏款限量供应（如每天只做5份），制造稀缺感。<br><br>【发布方式】<br>• 朋友圈发布：发一张模糊的蛋糕局部图（只露出颜色和质感），配文：「本月隐藏款已上线，老客户私信对暗号解锁~」不直接说是什么产品，引发好奇心<br>• 小红书发布：发一篇「莆田隐藏蛋糕店 | 对暗号才能点的秘密菜单」笔记，展示隐藏款的精美图片，但不透露暗号，引导用户私信咨询（同时引流到微信）<br>• 社群内发布：在客户群里发「暗号提示」，如「暗号和一种花有关」，让群友猜，增加互动<br><br>【规则设计】<br>只有微信好友才能解锁（引导加微信）。每人每次限点1份隐藏款。隐藏款每月更换，过期不候。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">每月隐藏款带来15-30个咨询，其中新增好友5-10个。老客户为了解锁隐藏款会主动关注朋友圈和社群，提升打开率。制造「社交货币」效应：顾客会主动跟朋友分享「我知道一家对暗号才能点蛋糕的店」。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">隐藏菜单/暗号玩法在江浙沪烘焙圈已非常流行，有案例显示「用暗号交流、用抢购表达忠诚」的店铺，新品几十秒就能售罄。心理学上的「稀缺效应」和「排他性」会显著提升产品感知价值。这种玩法天然适合社交媒体传播，用户会自发在小红书/朋友圈分享，形成免费口碑。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">10.荐新有礼</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">【阶梯式转介绍奖励机制】<br>第一阶：推荐1人下单 → 送1个小甜品（价值15-20元）+手写感谢卡 → 成本约8元<br>第二阶：累计推荐3人下单 → 送价值50元甜品礼盒 → 成本约20元<br>第三阶：累计推荐5人下单 → 当月消费享8折 → 成本约15-30元（按客单价算）<br>第四阶：累计推荐8人下单 → 升级VIP会员+年度服务大礼包 → 成本约30-50元<br><br>【执行方式】<br>机制说明：在客户群和朋友圈发布活动海报：「NOno Cake老友计划——好甜品要和朋友分享」。写明推荐规则和奖励。<br>追踪方式：新客户下单时询问「是谁推荐您来的？」，记录推荐人。或在朋友圈分享海报时带上专属暗号（每个老客户有不同的暗号），新客户下单时报暗号即可。<br>奖励发放：推荐成功后，第一时间私信推荐人：「XX姐，您推荐的朋友下单啦~感谢信任！送您一个小甜品，下次来取蛋糕时一并带上哦~」<br>公开表彰：每月在朋友圈/群里发一次「本月最佳推荐官」，列出推荐最多的3位客户（征得同意后），给予额外奖励，激发攀比心理。<br><br>【低成本裂变活动】（每月1次）<br>• 集赞送蛋糕：发一条朋友圈「转发这条+集满20个赞，截图发我，送1个小慕斯杯」，成本约5元/个，但可以触达每个参与者20个微信好友<br>• 拼团活动：3人成团享8折，鼓励客户拉朋友一起下单。集赞送小蛋糕活动可以「7天引爆周边圈层」<br><br>【转介绍双方都有礼】<br>老客推荐新客户<br>老客奖励：余额(存入顾客小程序账户，下单消费可用)，优惠券(满减、折扣、商品兑换券)<br>新客奖励：余额，积分，优惠券（新人立减券、折扣券、首单特惠）</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">每个老客户平均推荐1.5-2个新客户。老带新客户的首单转化率比广告新客高50%（因为信任传递）。获客成本控制在5-15元/人（远低于广告投放的50-100元/人）。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">口碑裂变是烘焙行业获客成本最低、转化率最高的方式。阶梯式奖励设计利用了「目标梯度效应」：客户达到第一阶后，为了获得更高奖励会继续推荐。实体店口碑裂变案例显示，设计合理的阶梯式转介绍机制，1个老顾客平均可以带来1-5个新顾客</div>
+</div>
+</details>
+</div>
+<div class="stage-section">
+<h2 class="stage-title" id="s1-2">私域运营<br>(百分百留存尝试)</h2>
+<details class="action-card">
+<summary class="action-summary">1. 标签化与回访（借助小程序后台）</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">通过地推加的人立刻备注来源（如：XX小区）。下单时备注偏好（少糖、草莓控）。回访核心动作：送达后 2 小时内主动微信询问口味。如果获好评，引导顾客在自己朋友圈晒图，或者在小程序晒图等等。可以奖励下次购买直接抵扣的 10 元红包。然后在新品上市，或者在节假日可以通过小程序去推送。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">首单满意度被拉满，客户不仅留存，还会引发二次复购和自然的口碑转介绍（裂变）。而晒图的动作同样可以让没有购买的顾客去做查看，增加下单意向</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">这种极致的个人化跟踪服务是大型连锁烘焙店无法做到的，这正是你个人微信号的好处</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">2. 社群运营</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">【建群时机与方式】<br>当微信好友达到80-100人时开始建第一个群。建群方式：从已有客户中筛选20-30个活跃度高的（有过互动、点过赞、咨询过的），一对一私聊邀请：「亲，我建了一个NOno Cake的甜品爱好者小群，群里会不定期发新品试吃、专属优惠和隐藏款暗号，邀请你加入呀~」<br>群名：「NOno Cake 甜品圈 | 莆田」。群规模控制在50-80人，超过80人考虑开新群（小群活跃度更高）。<br><br>【群规】（入群时发送，简洁友好）<br>「欢迎加入NOno Cake甜品圈~<br>这里是我们的专属小天地：<br>1. 每周一/三/五上午11点发新品预告和限时福利<br>2. 每月1号发隐藏款暗号提示<br>3. 群友专属：下单享9折+免费配送<br>4. 禁止发广告、砍价链接，违规移出哦<br>有问题随时@店主，看到就回~」<br><br>【日常内容安排】（每周内容日历）<br>周一11:00 → 本周新品预告（图片+价格+预订方式）→ 种草+提前锁定订单<br>周二15:00 → 甜品知识小分享（如「动物奶油vs植物奶油怎么分辨」）→ 建立专业信任感<br>周三11:00 → 限时秒杀（如「前10名下单蛋挞，1元1个」）→ 刺激即时消费<br>周四16:00 → 互动话题（如「你最喜欢的蛋糕口味是什么？投票选下周新品」）→ 提高群活跃度<br>周五11:00 → 周末福利（如「周末下单定制蛋糕送小甜品」）→ 引导周末消费<br>周六/日 → 顾客晒单分享（转发顾客发来的蛋糕照片+好评截图）→ 社交证明+激发购买欲<br><br>【签到打卡机制】（低成本方案）<br>每天早上9:00发一条：「早安~今天是NOno Cake甜品圈第X天，今天想吃点什么呢？」<br>群友回复任意内容即算签到，每周累计签到5天，周末发一个小福利（如「签到满5天的群友，周末下单送1个小慕斯杯」）。成本极低（每个小慕斯杯成本约3-5元），但能有效提升群打开率和粘性。<br><br>【转化路径设计】<br>群内种草 → 私信咨询 → 微信下单 → 朋友圈晒单 → 引发群友二次购买。关键：群内只做种草和福利，不下硬广。转化在私信中完成，避免群内刷屏引起反感。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">群活跃度保持在30%以上（行业优秀水平）。群成员月复购率达到40%-60%。群内限时秒杀活动，单次可转化10-20单。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">烘焙店社群运营成功案例显示，通过每天群内特价团购+互动内容，可以有效提升复购率（举例，可以通过每天群内特价团购，前20位特价1元蛋挞，可以成功激活沉寂客户）。社群的「从众效应」会让观望中的客户更快下单。群内互动建立的情感连接，是防止客户流失的最有效方式。也可以做抢红包的游戏，比如抢到最低的今天折扣最大，抢到最高的赠送蛋糕。其他的没有。等等社群可以开展很多营销玩法。刺激重购</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">3. 自动回访SOP<br>（新客回访计划）</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">【新客回访时间线】（每个新客户必做）<br><br>⏰ 下单后立即 → 发送订单确认+感谢<br>话术：「收到您的订单啦~[蛋糕名称]，[日期]取。用的是进口动物奶油，低糖配方，放心吃！有任何问题随时找我哦~」<br>目的：建立专业+贴心的第一印象<br><br>⏰ 取货当天 → 询问反馈<br>话术：「蛋糕取到了吗？希望你和家人喜欢~如果好吃的话，欢迎推荐给朋友呀[笑脸]」<br>目的：收集反馈+引导口碑传播<br><br>⏰ 第3天 → 关怀+复购引导<br>话术：「hi~蛋糕吃完了吗？这周新出了[新品名称]，老客户尝鲜价XX元，要不要试试？」<br>目的：趁记忆犹新时引导第二次消费<br><br>⏰ 第7天 → 邀请入群+发好评<br>话术：「感谢选择NOno Cake~我建了一个甜品爱好者小群，群里会发隐藏款暗号和专属优惠，邀请你加入呀~另外如果觉得好吃，在美团/大众点评给个好评的话，下次下单送小甜品哦！」<br>目的：沉淀到社群+积累好评<br><br>⏰ 第10天 → 推送节日/场景营销（如有）<br>话术：「下周就是母亲节了，要不要给妈妈定一个特别的蛋糕？提前预定享9折~」<br>目的：场景化复购引导<br><br>⏰ 第30天 → 休眠唤醒<br>话术：「好久没见啦~最近新出了好几款新品，给你发个老客户专属优惠券[图片]，随时来订哦！」<br>目的：防止流失<br><br>【执行方式】<br>我会在小程序后台设置一个回访的功能：如果是在小程序客户下单后，小程序会自动记录「X月X日首单-[蛋糕名称]」什么人；然后会自动的去按时间提醒你比如：取货当天、第3天、第7天、第10天、第30天各一个提醒；到时间点，你直接复制话术模板，稍微修改后发送（加上对方称呼，显得个性化）。<br>如果后期客户量增大（200+），可以换企业微信用企业微信的SOP功能，自动定时推送。<br><br>【话术原则】<br>不要群发！每条消息都要带对方称呼（如「XX姐」「XX妈妈」）。语气像朋友聊天，不要像客服模板。每次回访只做一件事（要么收集反馈，要么推新品，要么邀请入群），不要一次塞太多信息。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">新客30天内复购率从行业平均15%-20%提升到30%-40%。好评收集率从10%提升到40%以上。社群转化率（新客入群率）达到50%以上。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">私域运营研究数据显示，新客3天内回访的复购率比不回访高出3倍。7天是客户记忆的黄金窗口期，超过7天未触达，客户遗忘率急剧上升。标准化SOP可以确保每个新客都被照顾到，不遗漏任何一个潜在复购机会。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">4. 会员体系<br>（福利卡+积分制）</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">【设计原则】不设储值卡（避免法律风险和客户抵触），采用「福利卡+积分制」模式。<br><br>【会员等级设计】<br>等级1「甜品新人」：首次下单即自动成为。权益：新人礼包（1张9折券+1个免费小甜品）。有效期：永久。<br>等级2「甜品爱好者」：累计消费满300元。权益：全场9折+每月1张隐藏款优先兑换券+生日月送小蛋糕。有效期1年（消费满200元续期）。<br>等级3「甜品VIP」：累计消费满1000元。权益：全场85折+隐藏款不限量+新品免费试吃+生日蛋糕9折+专属定制服务。有效期1年（消费满500元续期）。<br><br>【积分制度】<br>每消费1元积1分。积分兑换：50积分=1个小甜品（价值15-20元），100积分=10元代金券，300积分=30元代金券，500积分=免费定制6寸蛋糕一次（价值90元）。积分的使用有效期如下：一半年未使用的积分会扣减一半，然后逐年扣减一半以单次获得的积分去扣除不是总数。（比如你在26年4月16号获得了10积分，到27年4月16号这个积分就会变成5.然后第二年就清除）<br><br>【执行方式】（低成本方案）<br>前期用Excel表格记录客户消费和积分（客户量&lt;200时完全可行）。每个客户微信备注格式：「姓名 | 等级 | 累计消费 | 积分」。每次下单后更新记录，并在月底给客户发积分变动通知：「XX姐，这个月你消费了XX元，获得XX积分，目前累计XX积分，可以兑换XX哦~」<br>客户量超过200后，考虑使用免费的会员管理小程序（如「有赞微商城」基础版）。<br><br>【电子会员卡】<br>不做实体卡（成本高、易丢失）。用Canva/稿定设计制作一张精美的会员卡图片，发给客户保存到手机。客户下单时出示会员卡图片即可享受对应权益。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">会员复购率比非会员高2-3倍。会员客单价比非会员高20%-30%（因为积分兑换门槛鼓励多消费）。12个月内预计30%的客户升级为「甜品爱好者」，10%升级为「甜品VIP」。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">不设储值卡的原因：预付费卡存在法律合规风险（多地已出台预付费卡管理规定），且新店信任度不够，客户不愿意充值。积分制+等级制的优势：客户「沉没成本」心理会驱动持续消费（「再消费100元就能升级了」）</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">5. 生日营销</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">【收集生日信息】（3个渠道）<br>1. 下单时自然询问：客户订蛋糕时，备注中通常会写「XX的生日蛋糕」，记录寿星的姓名和生日日期<br>2. 入群/加好友时收集：在入群欢迎语中加入：「为了给您准备生日惊喜，方便告诉我您的生日（月/日）吗？」<br>3. 会员登记表：小程序注册的时候会收集，让客户填写姓名+生日+口味偏好，填写后送1张新人优惠券<br><br>【信息管理】<br>小程序后台会有客户的360信息，比如名字，住址，口味便好，喜欢甜的还是不甜的，推荐人，有没有什么东西过敏之类的<br><br>【生日营销时间线】<br>🎂 生日前7天 → 小程序推送入口<br>话术：「xx你好，下周就是xx的生日啦~今年想要什么款式的蛋糕呢？提前预定可以享生日专属9折哦！最近新出了几款很适合送礼的设计，可以点小程序看看~」<br><br>🎂 生日前3天 → 小程序推送入口<br>话术：「xx生日快到了哦~蛋糕定好了吗？还没定的话要抓紧啦，这几天订单比较多~」<br><br>🎂 生日当天 → 祝福+惊喜<br>发一条生日祝福消息（不用太长，真诚即可）。如果是是客户本人，随推送送一张优惠券。顾客点击进去就是去领卷<br><br>🎂 生日后3天 → 回访+引导分享<br>话术：「生日过得开心吗？蛋糕还满意吗？如果拍了好看的照片，欢迎发给我呀，我发到朋友圈（征得同意后）~或者引导顾客小程序评论」<br><br>【生日专属权益】<br>• 生日当月：定制蛋糕9折+免费送1个小甜品（写上「生日快乐」）<br>• 生日当天：如果客户来取蛋糕，额外送1支花（成本2-3元，但仪式感满满）<br>• VIP客户：生日蛋糕免费升级一个尺寸（如6寸升8寸）</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">生日蛋糕复购率（第二年继续在NOno Cake订生日蛋糕）达到60%以上。生日客户转介绍率预计30%以上（因为生日蛋糕天然具有社交展示属性）。生日营销贡献全年定制蛋糕营收的40%-50%。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">生日是蛋糕店最核心的消费场景，数据显示生日蛋糕占蛋糕店营收的60%以上。提前7天推送的转化率比当天推送高3倍（来源：烘焙店会员生日提醒功能研究，提前3-7天提醒+专属优惠的转化效果最佳）。生日蛋糕的「社交展示」属性天然适合口碑传播，一个生日蛋糕可以被10-20个参加聚会的人看到。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">1. 小程序上线</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">实现在线下单、积分查询、会员卡、优惠券自助领取、以及门店管理、客户管理等功能。<br>核心功能：产品展示+在线下单+积分系统+会员卡+优惠券+订单管理。客户可以24小时自助浏览和下单，不受店主在线时间限制。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">客户自助下单率提升到60%以上，减少沟通成本。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">小程序让客户可以24小时自助浏览和下单，不受店主在线时间限制。500+客户量时，纯微信沟通效率太低，小程序可以大幅减少重复沟通。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">2. 内容矩阵化</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">小红书从1个号扩展到2-3个号（主号+员工号），抖音保持1个号但增加发布频率到每周5条。开始尝试直播（每周1次，展示蛋糕制作过程）。全网粉丝目标：5000+，每月新增微信好友100+。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">全网粉丝达到5000+，每月新增微信好友100+。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">多账号矩阵可以覆盖更多人群，直播是2025-2026年增长最快的获客方式。单账号流量天花板有限，矩阵化运营可以突破增长瓶颈。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">3. 异业联盟升级</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">从单点合作升级为「联盟套餐」。与周边奶茶店、花店、摄影工作室联合推出「生日派对套餐」（蛋糕+奶茶+花束+拍照），共享客户资源。利益分配机制：明确引流分佣、成本分摊、利润分配规则，确保双方都有动力持续推进。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">每月通过联盟获得30-50个新客户。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">联盟套餐的客单价更高，客户体验更完整，各方都能受益。异业合作成功案例显示，实施跨界合作后，线上销售额占比平均提升20%，顾客回头率平均提升25%。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">4. 社群裂变</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">每个群发展到80人后开新群，老群成员推荐3人入群送小甜品。目标建立5-8个活跃社群。社群总人数达到400-600人，月复购贡献营收30%+。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">社群总人数达到400-600人，月复购贡献营收30%+。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">社群是私域运营的核心阵地，规模效应会显著降低单客运营成本。小群（50-80人）的活跃度远高于大群。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">5. 本地KOL合作</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">找莆田本地3-5个粉丝在5000-20000的探店博主/宝妈博主，免费送蛋糕请他们体验，换取1条小红书/抖音笔记。合作话术：「你好，我是莆田城厢区新开的NOno Cake，主打进口动物奶油低糖定制蛋糕，想邀请你来免费体验一下，如果觉得好吃的话希望能帮忙发一条分享~」</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">每条笔记带来50-200个曝光，转化10-30个咨询。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">本地KOL的信任背书比广告更有效，且成本仅为产品成本（30-50元）。KOC（关键意见消费者）的真实体验笔记比品牌广告的转化率高3-5倍。</div>
+</div>
+</details>
+</div>
+<div class="stage-section">
+<h2 class="stage-title" id="s1-3">成长期<br>(500-2000人)</h2>
+<details class="action-card">
+<summary class="action-summary">1. 小程序上线</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">实现在线下单、积分查询、会员卡、优惠券自助领取、以及门店管理、客户管理等功能。<br>核心功能：产品展示+在线下单+积分系统+会员卡+优惠券+订单管理。客户可以24小时自助浏览和下单，不受店主在线时间限制。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">客户自助下单率提升到60%以上，减少沟通成本。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">小程序让客户可以24小时自助浏览和下单，不受店主在线时间限制。500+客户量时，纯微信沟通效率太低，小程序可以大幅减少重复沟通。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">2. 内容矩阵化</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">小红书从1个号扩展到2-3个号（主号+员工号），抖音保持1个号但增加发布频率到每周5条。开始尝试直播（每周1次，展示蛋糕制作过程）。全网粉丝目标：5000+，每月新增微信好友100+。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">全网粉丝达到5000+，每月新增微信好友100+。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">多账号矩阵可以覆盖更多人群，直播是2025-2026年增长最快的获客方式。单账号流量天花板有限，矩阵化运营可以突破增长瓶颈。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">3. 异业联盟升级</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">从单点合作升级为「联盟套餐」。与周边奶茶店、花店、摄影工作室联合推出「生日派对套餐」（蛋糕+奶茶+花束+拍照），共享客户资源。利益分配机制：明确引流分佣、成本分摊、利润分配规则，确保双方都有动力持续推进。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">每月通过联盟获得30-50个新客户。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">联盟套餐的客单价更高，客户体验更完整，各方都能受益。异业合作成功案例显示，实施跨界合作后，线上销售额占比平均提升20%，顾客回头率平均提升25%。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">4. 社群裂变</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">每个群发展到80人后开新群，老群成员推荐3人入群送小甜品。目标建立5-8个活跃社群。社群总人数达到400-600人，月复购贡献营收30%+。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">社群总人数达到400-600人，月复购贡献营收30%+。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">社群是私域运营的核心阵地，规模效应会显著降低单客运营成本。小群（50-80人）的活跃度远高于大群。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">5. 本地KOL合作</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">找莆田本地3-5个粉丝在5000-20000的探店博主/宝妈博主，免费送蛋糕请他们体验，换取1条小红书/抖音笔记。合作话术：「你好，我是莆田城厢区新开的NOno Cake，主打进口动物奶油低糖定制蛋糕，想邀请你来免费体验一下，如果觉得好吃的话希望能帮忙发一条分享~」</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">每条笔记带来50-200个曝光，转化10-30个咨询。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">本地KOL的信任背书比广告更有效，且成本仅为产品成本（30-50元）。KOC（关键意见消费者）的真实体验笔记比品牌广告的转化率高3-5倍。</div>
+</div>
+</details>
+</div>
+<div class="stage-section">
+<h2 class="stage-title" id="s1-4">成熟期<br>(2000人+)</h2>
+<details class="action-card">
+<summary class="action-summary">1. 品牌IP化</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">打造「NOno Cake」品牌故事和视觉体系。统一Logo、包装、色调。在小红书/抖音输出品牌内容（如「一个莆田女孩的蛋糕创业日记」系列），建立品牌认知。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">品牌搜索量提升，自然咨询占比超过50%。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">品牌化是从「卖产品」到「卖品牌」的关键跨越，品牌溢价可以提升客单价20%-30%。有品牌认知的店铺，客户主动搜索占比远高于无品牌店铺。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">2. 自动化运营体系</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">全面启用企微SOP+小程序+自动化营销工具。新客自动推送欢迎语+优惠券，生日自动提醒，休眠客户自动唤醒。将80%的重复性工作自动化。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">人工运营时间减少60%，可以专注于产品研发和内容创作。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">2000+客户量已超出人工运营极限，自动化是唯一可持续的方式。自动化营销的触达精准度和及时性远超人工。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">3. 会员体系升级<br>（付费会员）</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">推出付费会员卡（如99元/年），包含：全年定制蛋糕9折、每月1次免费小甜品、新品优先试吃、生日专属礼盒。付费会员的沉没成本会大幅提升忠诚度。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">付费会员转化率达到10%-15%，会员年消费额是非会员的3倍。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">付费会员制是烘焙行业成熟的商业模式，付费客户的复购率是免费会员的2倍以上。杭州某烘焙店通过「新人福利卡」模式，会员复购率近87%。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">4. 员工/合伙人体系</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">合伙人开始承担更多运营工作（1人负责社群+回访，1人负责内容拍摄+发布）。建立标准操作手册（SOP文档），确保任何人都能按标准执行。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">店主从日常运营中解放出来，专注于产品研发和战略规划。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">一个人无法支撑2000+客户的运营，必须建立团队和标准化流程。标准化操作手册是团队协作的基础。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">5. 线下活动</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">每季度举办1次线下活动（如「亲子蛋糕DIY体验」「甜品品鉴会」），邀请VIP客户参加。活动成本约200-500元/次（材料费）。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">每次活动带来10-20条小红书/朋友圈自发分享，触达2000-5000人。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">线下体验是线上无法替代的，面对面的互动建立的信任最深。唯品客（VipCake）案例显示，活动用户复购率可达75%以上。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">6. 第二增长曲线</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">考虑开设线上课程（蛋糕烘焙教学）、企业下午茶定制、婚庆甜品台等新业务线，拓宽营收来源。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">新业务线贡献营收20%-30%。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">单一品类天花板有限，多元化经营可以平滑季节性波动。企业下午茶和婚庆甜品台是高客单价新场景。</div>
+</div>
+</details>
+</div>
+
+</div>
+
+<!-- Chapter 2 -->
+<div class="chapter" id="chapter2">
+<div class="chapter-header">
+<h1>客户生命周期管理</h1>
+</div>
+<div class="stage-section">
+<h2 class="stage-title" id="s2-1">引入期<br>(0-7天)</h2>
+<details class="action-card">
+<summary class="action-summary">欢迎礼 <span class="time-badge">加好友后24小时内</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">具体执行内容</div>
+<div class="tag-content">新好友通过后24小时内发送：<br>「欢迎认识~我是NOno Cake的店主，这是新人专属9折券，有效期7天，有任何蛋糕需求随时找我哦~」</div>
+<div class="tag tag-result">触达方式</div>
+<div class="tag-content">微信私信</div>
+<div class="tag tag-reason">预期效果/转化率</div>
+<div class="tag-content">优惠券使用率30%-50%</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">朋友圈种草 <span class="time-badge">加好友后1-3天</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">具体执行内容</div>
+<div class="tag-content">新好友通过后，确保最近3条朋友圈展示了最好的产品图、客户好评、店铺日常。新好友打开朋友圈第一眼就能看到你的产品实力。</div>
+<div class="tag tag-result">触达方式</div>
+<div class="tag-content">朋友圈（被动触达）</div>
+<div class="tag tag-reason">预期效果/转化率</div>
+<div class="tag-content">新好友朋友圈互动率20%+</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">首单引导 <span class="time-badge">第3天</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">具体执行内容</div>
+<div class="tag-content">如果3天内未下单，发送：<br>「最近新出了[产品名]，要不要试试？新人首单还可以用9折券哦~」</div>
+<div class="tag tag-result">触达方式</div>
+<div class="tag-content">微信私信</div>
+<div class="tag tag-reason">预期效果/转化率</div>
+<div class="tag-content">首单转化率40%-60%</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">入群邀请 <span class="time-badge">首次下单后</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">具体执行内容</div>
+<div class="tag-content">首次下单后邀请入群：<br>「感谢信任！邀请你加入我们的甜品小群，群里有很多隐藏福利哦~」</div>
+<div class="tag tag-result">触达方式</div>
+<div class="tag-content">微信私信</div>
+<div class="tag tag-reason">预期效果/转化率</div>
+<div class="tag-content">入群率50%+</div>
+</div>
+</details>
+</div>
+<div class="stage-section">
+<h2 class="stage-title" id="s2-2">成长期<br>(7-30天)</h2>
+<details class="action-card">
+<summary class="action-summary">取蛋糕后回访 <span class="time-badge">第3天</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">具体执行内容</div>
+<div class="tag-content">取蛋糕后第3天询问反馈+推荐新品：<br>「hi~蛋糕吃完了吗？这周新出了[新品名称]，老客户尝鲜价XX元，要不要试试？」</div>
+<div class="tag tag-result">触达方式</div>
+<div class="tag-content">微信私信</div>
+<div class="tag tag-reason">预期效果/转化率</div>
+<div class="tag-content">复购引导转化率20%-30%</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">入群+好评引导 <span class="time-badge">第7天</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">具体执行内容</div>
+<div class="tag-content">邀请入群+引导美团/大众点评好评：<br>「感谢选择NOno Cake~我建了一个甜品爱好者小群，群里会发隐藏款暗号和专属优惠，邀请你加入呀~另外如果觉得好吃，在美团/大众点评给个好评的话，下次下单送小甜品哦！」</div>
+<div class="tag tag-result">触达方式</div>
+<div class="tag-content">微信私信</div>
+<div class="tag tag-reason">预期效果/转化率</div>
+<div class="tag-content">好评率40%+，入群率50%+</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">场景化推送 <span class="time-badge">第14天</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">具体执行内容</div>
+<div class="tag-content">根据客户标签推送场景化内容（如有小孩的客户推「儿童节蛋糕」，有老人的推「低糖蛋糕」）。</div>
+<div class="tag tag-result">触达方式</div>
+<div class="tag-content">朋友圈定向/私信/小程序推送</div>
+<div class="tag tag-reason">预期效果/转化率</div>
+<div class="tag-content">场景化复购率15%-25%</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">限时福利 <span class="time-badge">第21天</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">具体执行内容</div>
+<div class="tag-content">发送限时优惠券（如「本周有效，满100减20」），制造紧迫感。</div>
+<div class="tag tag-result">触达方式</div>
+<div class="tag-content">微信私信/小程序推送</div>
+<div class="tag tag-reason">预期效果/转化率</div>
+<div class="tag-content">优惠券核销率30%-40%</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">会员升级提醒 <span class="time-badge">第30天</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">具体执行内容</div>
+<div class="tag-content">「你已累计消费XX元，再消费XX元就能升级甜品爱好者啦，升级后全场9折哦~」</div>
+<div class="tag tag-result">触达方式</div>
+<div class="tag-content">微信私信/小程序推送</div>
+<div class="tag tag-reason">预期效果/转化率</div>
+<div class="tag-content">刺激追加消费</div>
+</div>
+</details>
+</div>
+<div class="stage-section">
+<h2 class="stage-title" id="s2-3">成熟期<br>(30-90天)</h2>
+<details class="action-card">
+<summary class="action-summary">新品优先体验 <span class="time-badge">每次上新前</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">具体执行内容</div>
+<div class="tag-content">每次上新前，先私信VIP客户：<br>「新品出来了，你是最早一批尝到的~」</div>
+<div class="tag tag-result">触达方式</div>
+<div class="tag-content">微信私信/小程序推送</div>
+<div class="tag tag-reason">预期效果/转化率</div>
+<div class="tag-content">VIP客户新品购买率50%+</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">隐藏款专属通知 <span class="time-badge">每月1号</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">具体执行内容</div>
+<div class="tag-content">每月隐藏款优先通知VIP客户，普通客户延后1天。制造VIP尊贵感，提升续费意愿。</div>
+<div class="tag tag-result">触达方式</div>
+<div class="tag-content">社群+私信/小程序推送</div>
+<div class="tag tag-reason">预期效果/转化率</div>
+<div class="tag-content">提升VIP尊贵感和续费意愿</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">节日营销 <span class="time-badge">节日前10天</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">具体执行内容</div>
+<div class="tag-content">提前10天推送节日定制蛋糕（情人节、母亲节、儿童节、中秋节等）。</div>
+<div class="tag tag-result">触达方式</div>
+<div class="tag-content">私信+朋友圈+社群+小程序推送</div>
+<div class="tag tag-reason">预期效果/转化率</div>
+<div class="tag-content">节日蛋糕预订率60%+</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">会员专属活动 <span class="time-badge">每季度1次</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">具体执行内容</div>
+<div class="tag-content">每季度1次线下品鉴会或DIY活动，仅限VIP参加。</div>
+<div class="tag tag-result">触达方式</div>
+<div class="tag-content">私信邀请/小程序推送</div>
+<div class="tag tag-reason">预期效果/转化率</div>
+<div class="tag-content">参与率30%-50%，活动后发朋友圈分享率80%+</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">老带新激励 <span class="time-badge">持续进行</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">具体执行内容</div>
+<div class="tag-content">定期推送老友计划进展：<br>「您已推荐X人，再推荐X人就能升级啦~」</div>
+<div class="tag tag-result">触达方式</div>
+<div class="tag-content">私信/小程序推送</div>
+<div class="tag tag-reason">预期效果/转化率</div>
+<div class="tag-content">持续激发推荐动力</div>
+</div>
+</details>
+</div>
+<div class="stage-section">
+<h2 class="stage-title" id="s2-4">休眠期<br>(90天+)</h2>
+<details class="action-card">
+<summary class="action-summary">温情唤醒 <span class="time-badge">第90天</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">具体执行内容</div>
+<div class="tag-content">「好久不见啦~最近好吗？给你发了一张老客户专属优惠券，随时回来哦~」</div>
+<div class="tag tag-result">触达方式</div>
+<div class="tag-content">微信私信/小程序推送</div>
+<div class="tag tag-reason">预期效果/转化率</div>
+<div class="tag-content">唤醒率15%-25%</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">新品诱惑 <span class="time-badge">第120天</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">具体执行内容</div>
+<div class="tag-content">发送最新产品的精美图片：<br>「出了好多新品，你最爱的口味也有新变化哦~」</div>
+<div class="tag tag-result">触达方式</div>
+<div class="tag-content">微信私信/小程序推送</div>
+<div class="tag tag-reason">预期效果/转化率</div>
+<div class="tag-content">唤醒率10%-15%</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">限时回归礼 <span class="time-badge">第150天</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">具体执行内容</div>
+<div class="tag-content">「专属回归礼：凭此消息下单，送价值30元甜品礼盒，有效期7天~」</div>
+<div class="tag tag-result">触达方式</div>
+<div class="tag-content">微信私信/小程序推送</div>
+<div class="tag tag-reason">预期效果/转化率</div>
+<div class="tag-content">唤醒率20%-30%（限时效应最强）</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">最终触达 <span class="time-badge">第180天</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">具体执行内容</div>
+<div class="tag-content">「最后一次通知啦~如果不再需要我们的服务，我就不打扰了。如果以后想吃蛋糕，随时找我~」</div>
+<div class="tag tag-result">触达方式</div>
+<div class="tag-content">微信私信</div>
+<div class="tag tag-reason">预期效果/转化率</div>
+<div class="tag-content">唤醒率5%-10%，避免被删除/拉黑</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">降低触达频率 <span class="time-badge">180天以上</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">具体执行内容</div>
+<div class="tag-content">超过180天未互动且未唤醒成功的客户，降低触达频率至每季度1次，仅通过朋友圈/小程序 被动触达，保持存在感但不打扰。</div>
+<div class="tag tag-result">触达方式</div>
+<div class="tag-content">朋友圈/小程序（仅被动触达）</div>
+<div class="tag tag-reason">预期效果/转化率</div>
+<div class="tag-content">保持存在感但不打扰</div>
+</div>
+</details>
+</div>
+
+</div>
+
+<!-- Chapter 3 -->
+<div class="chapter" id="chapter3">
+<div class="chapter-header">
+<h1>执行优先级时间表</h1>
+</div>
+<div class="note">备注：此时间表仅供参考，ai生成根据你自己的时间来安排。如果忙不过可以找我</div>
+<div class="stage-section">
+<h2 class="stage-title" id="s3-1">第一批<br>（立即启动）</h2>
+<details class="action-card">
+<summary class="action-summary">小红书账号设置+开始发布内容 <span class="time-badge">第1-4周</span> <span class="priority-high">高</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">每日投入时间</div>
+<div class="tag-content">30分钟</div>
+<div class="tag tag-result">备注</div>
+<div class="tag-content">每天发1篇，坚持是关键</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">美团/大众点评入驻 <span class="time-badge">第1-4周</span> <span class="priority-high">高</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">每日投入时间</div>
+<div class="tag-content">1-2天完成入驻</div>
+<div class="tag tag-result">备注</div>
+<div class="tag-content">准备好营业执照和食品经营许可证</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">社区业主群加入和融入 <span class="time-badge">第1-4周</span> <span class="priority-high">高</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">每日投入时间</div>
+<div class="tag-content">15分钟</div>
+<div class="tag tag-result">备注</div>
+<div class="tag-content">前2-3周只融入不推销</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">新客回访SOP执行 <span class="time-badge">第1-4周</span> <span class="priority-high">高</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">每日投入时间</div>
+<div class="tag-content">15分钟</div>
+<div class="tag tag-result">备注</div>
+<div class="tag-content">从第一个客户开始执行</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">亲友种子裂变 <span class="time-badge">第1-4周</span> <span class="priority-high">高</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">每日投入时间</div>
+<div class="tag-content">一次性准备</div>
+<div class="tag tag-result">备注</div>
+<div class="tag-content">制作试吃装+卡片</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">真实诚意地推 <span class="time-badge">第1-4周</span> <span class="priority-high">高</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">每日投入时间</div>
+<div class="tag-content">1.5-2小时/次，每周2-3次</div>
+<div class="tag tag-result">备注</div>
+<div class="tag-content">选好地点+准备好话术</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">异业资源共享 <span class="time-badge">第1-4周</span> <span class="priority-medium">中</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">每日投入时间</div>
+<div class="tag-content">1-2天拜访</div>
+<div class="tag tag-result">备注</div>
+<div class="tag-content">先谈3-5家周边店铺</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">打造真人朋友圈 <span class="time-badge">第1-4周</span> <span class="priority-high">高</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">每日投入时间</div>
+<div class="tag-content">30分钟</div>
+<div class="tag tag-result">备注</div>
+<div class="tag-content">每天3-4条，按比例发布</div>
+</div>
+</details>
+</div>
+<div class="stage-section">
+<h2 class="stage-title" id="s3-2">第二批</h2>
+<details class="action-card">
+<summary class="action-summary">抖音账号设置+开始拍视频 <span class="time-badge">第5-8周</span> <span class="priority-medium">中</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">每日投入时间</div>
+<div class="tag-content">30-60分钟</div>
+<div class="tag tag-result">备注</div>
+<div class="tag-content">每周发2-3条短视频</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">隐藏菜单/暗号玩法上线 <span class="time-badge">第5-8周</span> <span class="priority-medium">中</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">每日投入时间</div>
+<div class="tag-content">偶尔</div>
+<div class="tag tag-result">备注</div>
+<div class="tag-content">每月推出1款隐藏款</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">社群建立 <span class="time-badge">第5-8周</span> <span class="priority-medium">中</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">每日投入时间</div>
+<div class="tag-content">20分钟</div>
+<div class="tag tag-result">备注</div>
+<div class="tag-content">好友达80-100人时建群</div>
+</div>
+</details>
+</div>
+<div class="stage-section">
+<h2 class="stage-title" id="s3-3">第三批</h2>
+<details class="action-card">
+<summary class="action-summary">会员体系上线 <span class="time-badge">第9-16周</span> <span class="priority-medium">中</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">每日投入时间</div>
+<div class="tag-content">10分钟</div>
+<div class="tag tag-result">备注</div>
+<div class="tag-content">用Excel记录即可</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">生日营销体系建立 <span class="time-badge">第9-16周</span> <span class="priority-medium">中</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">每日投入时间</div>
+<div class="tag-content">5分钟/天</div>
+<div class="tag tag-result">备注</div>
+<div class="tag-content">建立生日日历Excel</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">老带新裂变机制启动 <span class="time-badge">第9-16周</span> <span class="priority-medium">中</span></summary>
+<div class="action-content">
+<div class="tag tag-plan">每日投入时间</div>
+<div class="tag-content">偶尔</div>
+<div class="tag tag-result">备注</div>
+<div class="tag-content">每月1次裂变活动</div>
+</div>
+</details>
+</div>
+
+</div>
+
+</div>
+
+<!-- Back to top -->
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8679;</button>
+
+<script>
+// Navigation dropdown toggle
+(function() {
+    var navItems = document.querySelectorAll('.nav-item');
+    var currentOpen = null;
+
+    // Map each nav-item to its chapter id
+    var chapterMap = {
+        'menu1': 'chapter1',
+        'menu2': 'chapter2',
+        'menu3': 'chapter3'
+    };
+
+    navItems.forEach(function(item) {
+        var link = item.querySelector('a:not(.nav-dropdown a)');
+        var dropdown = item.querySelector('.nav-dropdown');
+        var menuId = item.getAttribute('data-menu');
+
+        if (!link || !dropdown) return;
+
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Close other dropdowns
+            if (currentOpen && currentOpen !== dropdown) {
+                currentOpen.classList.remove('show');
+                currentOpen.closest('.nav-item').classList.remove('active');
+            }
+
+            // Toggle this dropdown
+            if (dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+                item.classList.remove('active');
+                currentOpen = null;
+            } else {
+                dropdown.classList.add('show');
+                item.classList.add('active');
+                currentOpen = dropdown;
+            }
+
+            // Scroll to the chapter
+            var chapterId = chapterMap[menuId];
+            if (chapterId) {
+                var chapterEl = document.getElementById(chapterId);
+                if (chapterEl) {
+                    var navHeight = 50;
+                    var elementPosition = chapterEl.getBoundingClientRect().top + window.pageYOffset;
+                    var offsetPosition = elementPosition - navHeight;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                }
+            }
+        });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (currentOpen && !e.target.closest('.nav-item')) {
+            currentOpen.classList.remove('show');
+            currentOpen.closest('.nav-item').classList.remove('active');
+            currentOpen = null;
+        }
+    });
+
+    // Scroll to anchor function (for sub-items in dropdown)
+    window.scrollToAnchor = function(id) {
+        var el = document.getElementById(id);
+        if (el) {
+            // Close dropdown
+            if (currentOpen) {
+                currentOpen.classList.remove('show');
+                currentOpen.closest('.nav-item').classList.remove('active');
+                currentOpen = null;
+            }
+            // Scroll with offset for fixed nav (50px)
+            var navHeight = 50;
+            var elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
+            var offsetPosition = elementPosition - navHeight;
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+    };
+})();
+
+// Back to top button
+window.addEventListener('scroll', function() {
+    var btn = document.getElementById('backToTop');
+    if (window.scrollY > 300) {
+        btn.classList.add('show');
+    } else {
+        btn.classList.remove('show');
+    }
+});
+
+// Nav hint - show once for new visitors
+(function() {
+    var hint = document.getElementById('navHint');
+    if (!hint) return;
+
+    // Check if already shown before
+    if (localStorage.getItem('navHintShown')) return;
+
+    // Show hint after 1.5s delay
+    setTimeout(function() {
+        hint.classList.add('show');
+    }, 1500);
+
+    // Auto hide after 5s
+    setTimeout(function() {
+        hint.classList.remove('show');
+        localStorage.setItem('navHintShown', '1');
+    }, 6500);
+
+    // Hide immediately when user clicks any nav item
+    document.querySelectorAll('.nav-item > a, .nav-dropdown a').forEach(function(el) {
+        el.addEventListener('click', function() {
+            hint.classList.remove('show');
+            localStorage.setItem('navHintShown', '1');
+        });
+    });
+})();
+</script>
+
+</body>
+</html>
