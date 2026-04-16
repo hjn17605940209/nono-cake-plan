@@ -13,22 +13,23 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-    background-color: #F5F7FA;
-    color: #333;
+    background: #FDFBF7;
+    color: #3D2B1F;
     line-height: 1.6;
     padding-bottom: 60px;
+    min-height: 100vh;
 }
 
-/* Fixed Navigation */
+/* Navigation */
 .nav {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    background: #2B5797;
+    background: #3D2B1F;
     color: white;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
 }
 
 .nav-inner {
@@ -41,32 +42,92 @@ body {
 }
 
 .nav-brand {
-    font-weight: bold;
+    font-weight: 700;
     font-size: 16px;
     white-space: nowrap;
-    margin-right: 16px;
+    margin-right: 24px;
+    color: #FFFFFF;
+    letter-spacing: -0.2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-brand img {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
 }
 
 .nav-links {
     display: flex;
-    gap: 4px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    gap: 0;
+    overflow: visible;
 }
 
-.nav-links a {
+.nav-links > .nav-item {
+    position: relative;
+}
+
+.nav-links > .nav-item > a {
     color: rgba(255,255,255,0.85);
     text-decoration: none;
-    font-size: 13px;
-    padding: 6px 10px;
-    border-radius: 6px;
+    font-size: 14px;
+    padding: 6px 16px;
     white-space: nowrap;
-    transition: background 0.2s;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    display: block;
+    letter-spacing: -0.1px;
+    border-radius: 20px;
+    margin: 8px 4px;
 }
 
-.nav-links a:hover {
+.nav-links > .nav-item > a:hover,
+.nav-links > .nav-item.active > a {
+    color: #FFFFFF;
     background: rgba(255,255,255,0.15);
-    color: white;
+}
+
+.nav-links > .nav-item.active > a {
+    background: rgba(255,255,255,0.2);
+}
+
+/* Dropdown */
+.nav-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #FFFFFF;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.06);
+    border-radius: 8px;
+    padding: 6px 8px;
+    min-width: auto;
+    z-index: 1001;
+    border: 1px solid #E8DDD0;
+    flex-direction: row;
+    gap: 4px;
+}
+
+.nav-dropdown.show {
+    display: flex;
+}
+
+.nav-dropdown a {
+    display: block;
+    color: #3D2B1F;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 6px 14px;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+    border-radius: 6px;
+}
+
+.nav-dropdown a:hover {
+    color: #C4956A;
+    background: #FFF8F0;
 }
 
 /* Main Content */
@@ -76,23 +137,35 @@ body {
     padding: 70px 16px 40px;
 }
 
-/* Chapter Header */
+/* Chapter */
 .chapter {
-    margin-bottom: 32px;
+    margin-bottom: 36px;
 }
 
+/* Chapter Header */
 .chapter-header {
-    background: linear-gradient(135deg, #2B5797, #3A6DB5);
-    color: white;
-    padding: 24px 20px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 15px rgba(43,87,151,0.3);
+    padding: 32px 0 20px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #F0E6DA;
 }
 
 .chapter-header h1 {
-    font-size: 22px;
-    margin-bottom: 4px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #3D2B1F;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    padding-left: 16px;
+    border-left: 4px solid #C4956A;
+    border-radius: 2px;
+}
+
+.chapter-subtitle {
+    font-size: 13px;
+    color: #A89888;
+    margin-top: 6px;
+    padding-left: 20px;
+    letter-spacing: 0.5px;
 }
 
 /* Stage Section */
@@ -100,24 +173,33 @@ body {
     margin-bottom: 24px;
 }
 
+/* Stage titles */
 .stage-title {
-    font-size: 18px;
-    color: #2B5797;
-    padding: 10px 16px;
-    background: #D6E4F0;
+    font-size: 17px;
+    color: #5D4E37;
+    padding: 12px 16px;
     border-radius: 8px;
     margin-bottom: 12px;
-    border-left: 4px solid #2B5797;
+    border-left: 3px solid #E8A87C;
+    font-weight: 600;
+    background: #FFF8F0;
+    letter-spacing: -0.2px;
 }
 
 /* Action Card */
 .action-card {
-    background: white;
+    background: #FFFFFF;
     border-radius: 10px;
     margin-bottom: 10px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
     overflow: hidden;
-    border: 1px solid #E8ECF1;
+    border: 1px solid #F0E6DA;
+    transition: all 0.25s ease;
+}
+
+.action-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
 }
 
 .action-summary {
@@ -125,13 +207,14 @@ body {
     cursor: pointer;
     font-weight: 600;
     font-size: 15px;
-    color: #2B5797;
+    color: #3D2B1F;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 8px;
     list-style: none;
     user-select: none;
+    transition: color 0.2s;
 }
 
 .action-summary::-webkit-details-marker {
@@ -140,9 +223,10 @@ body {
 
 .action-summary::before {
     content: "\25B6";
-    font-size: 12px;
+    font-size: 11px;
     transition: transform 0.2s;
     flex-shrink: 0;
+    color: #C4956A;
 }
 
 details[open] > .action-summary::before {
@@ -151,38 +235,42 @@ details[open] > .action-summary::before {
 
 .action-content {
     padding: 0 16px 16px;
-    border-top: 1px solid #F0F2F5;
+    border-top: 1px solid #F0E6DA;
 }
 
 /* Tags */
 .tag {
     display: inline-block;
-    padding: 3px 10px;
-    border-radius: 4px;
+    padding: 3px 12px;
+    border-radius: 20px;
     font-size: 12px;
     font-weight: 600;
     margin-top: 12px;
     margin-bottom: 4px;
+    letter-spacing: 0.3px;
 }
 
 .tag-plan {
-    background: #E8F5E9;
-    color: #2E7D32;
+    background: #FFF0E5;
+    color: #C47A3A;
+    border: none;
 }
 
 .tag-result {
-    background: #FFF3E0;
-    color: #E65100;
+    background: #E8F5E9;
+    color: #2E7D32;
+    border: none;
 }
 
 .tag-reason {
-    background: #E3F2FD;
-    color: #1565C0;
+    background: #F3E5F5;
+    color: #7B1FA2;
+    border: none;
 }
 
 .tag-content {
     font-size: 14px;
-    color: #444;
+    color: #5D4E37;
     line-height: 1.7;
     padding-left: 4px;
 }
@@ -191,40 +279,43 @@ details[open] > .action-summary::before {
 .time-badge {
     font-size: 12px;
     font-weight: 400;
-    color: #666;
-    background: #F0F2F5;
-    padding: 2px 8px;
-    border-radius: 4px;
+    color: #5D4E37;
+    background: #FFF8F0;
+    padding: 2px 10px;
+    border-radius: 20px;
+    border: none;
 }
 
 /* Priority */
 .priority-high {
     font-size: 12px;
     font-weight: 600;
-    color: #D32F2F;
-    background: #FFEBEE;
-    padding: 2px 8px;
-    border-radius: 4px;
+    color: #C62828;
+    background: #FFF0F0;
+    padding: 2px 10px;
+    border-radius: 20px;
+    border: none;
 }
 
 .priority-medium {
     font-size: 12px;
     font-weight: 600;
-    color: #F57C00;
-    background: #FFF3E0;
-    padding: 2px 8px;
-    border-radius: 4px;
+    color: #E65100;
+    background: #FFF8F0;
+    padding: 2px 10px;
+    border-radius: 20px;
+    border: none;
 }
 
 /* Note */
 .note {
-    background: #FFF8E1;
-    border-left: 4px solid #FFC107;
+    background: #FFF8F0;
+    border-left: 2px solid #C4956A;
     padding: 12px 16px;
     border-radius: 0 8px 8px 0;
     margin-bottom: 20px;
     font-size: 13px;
-    color: #666;
+    color: #5D4E37;
 }
 
 /* Back to top button */
@@ -234,18 +325,24 @@ details[open] > .action-summary::before {
     right: 24px;
     width: 44px;
     height: 44px;
-    background: #2B5797;
-    color: white;
+    background: #C4956A;
+    color: #FFFFFF;
     border: none;
     border-radius: 50%;
     font-size: 20px;
     cursor: pointer;
-    box-shadow: 0 2px 10px rgba(43,87,151,0.4);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     display: none;
     align-items: center;
     justify-content: center;
     z-index: 999;
-    transition: opacity 0.3s;
+    transition: all 0.25s ease;
+}
+
+.back-to-top:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    background: #B8865A;
 }
 
 .back-to-top.show {
@@ -256,16 +353,28 @@ details[open] > .action-summary::before {
 @media (max-width: 600px) {
     .nav-brand {
         font-size: 14px;
+        margin-right: 16px;
+        color: #FFFFFF;
     }
-    .nav-links a {
-        font-size: 12px;
-        padding: 5px 8px;
+    .nav-links > .nav-item > a {
+        font-size: 13px;
+        padding: 5px 12px;
+        margin: 8px 2px;
+        color: rgba(255,255,255,0.85);
+    }
+    .nav-links > .nav-item > a:hover,
+    .nav-links > .nav-item.active > a {
+        color: #FFFFFF;
+        background: rgba(255,255,255,0.15);
     }
     .chapter-header h1 {
-        font-size: 18px;
+        font-size: 22px;
+    }
+    .chapter-subtitle {
+        font-size: 12px;
     }
     .stage-title {
-        font-size: 16px;
+        font-size: 15px;
     }
     .action-summary {
         font-size: 14px;
@@ -274,19 +383,96 @@ details[open] > .action-summary::before {
     .tag-content {
         font-size: 13px;
     }
+    .back-to-top {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        bottom: 16px;
+        right: 16px;
+    }
+    .nav-dropdown {
+        position: fixed;
+        top: 50px;
+        left: 0;
+        right: 0;
+        border-radius: 0;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+        padding: 8px 12px;
+        gap: 6px;
+    }
+    .nav-dropdown a {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+}
+
+/* Nav hint animation */
+.nav-hint {
+    position: fixed;
+    top: 58px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(61,43,31,0.92);
+    color: #FFFFFF;
+    font-size: 13px;
+    padding: 8px 20px;
+    border-radius: 20px;
+    z-index: 1002;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    white-space: nowrap;
+}
+.nav-hint.show {
+    opacity: 1;
+    animation: hintBounce 1.5s ease infinite;
+}
+.nav-hint::before {
+    content: '👆 ';
+}
+@keyframes hintBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-6px); }
 }
 </style>
 </head>
 <body>
 
+<!-- Navigation hint -->
+<div class="nav-hint" id="navHint">点击导航栏切换章节</div>
+
 <!-- Navigation -->
 <nav class="nav">
 <div class="nav-inner">
-<span class="nav-brand">NOno Cake</span>
+<span class="nav-brand"><img src="logo.jpg" alt="NOno Cake">NOno Cake</span>
 <div class="nav-links">
-<a href="#chapter1">获客方案</a>
-<a href="#chapter2">生命周期</a>
-<a href="#chapter3">时间表</a>
+<div class="nav-item" data-menu="menu1">
+<a href="javascript:void(0)">获客方案</a>
+<div class="nav-dropdown" id="menu1">
+<a href="#s1-1" onclick="scrollToAnchor('s1-1')">起步测试期</a>
+<a href="#s1-2" onclick="scrollToAnchor('s1-2')">私域运营</a>
+<a href="#s1-3" onclick="scrollToAnchor('s1-3')">成长期</a>
+<a href="#s1-4" onclick="scrollToAnchor('s1-4')">成熟期</a>
+</div>
+</div>
+<div class="nav-item" data-menu="menu2">
+<a href="javascript:void(0)">生命周期</a>
+<div class="nav-dropdown" id="menu2">
+<a href="#s2-1" onclick="scrollToAnchor('s2-1')">引入期</a>
+<a href="#s2-2" onclick="scrollToAnchor('s2-2')">成长期</a>
+<a href="#s2-3" onclick="scrollToAnchor('s2-3')">成熟期</a>
+<a href="#s2-4" onclick="scrollToAnchor('s2-4')">休眠期</a>
+</div>
+</div>
+<div class="nav-item" data-menu="menu3">
+<a href="javascript:void(0)">时间表</a>
+<div class="nav-dropdown" id="menu3">
+<a href="#s3-1" onclick="scrollToAnchor('s3-1')">第一批</a>
+<a href="#s3-2" onclick="scrollToAnchor('s3-2')">第二批</a>
+<a href="#s3-3" onclick="scrollToAnchor('s3-3')">第三批</a>
+</div>
+</div>
 </div>
 </div>
 </nav>
@@ -296,10 +482,11 @@ details[open] > .action-summary::before {
 <!-- Chapter 1 -->
 <div class="chapter" id="chapter1">
 <div class="chapter-header">
-<h1>蛋糕店私域运营获客方案</h1>
+<h1>NOno Cakes私域运营方案</h1>
+<p class="chapter-subtitle">不定时更新</p>
 </div>
 <div class="stage-section">
-<h2 class="stage-title">起步测试期<br>(0-500人)</h2>
+<h2 class="stage-title" id="s1-1">起步测试期<br>(0-500人)</h2>
 <details class="action-card">
 <summary class="action-summary">1. 亲友种子裂变</summary>
 <div class="action-content">
@@ -401,7 +588,7 @@ details[open] > .action-summary::before {
 </details>
 </div>
 <div class="stage-section">
-<h2 class="stage-title">私域运营<br>(百分百留存尝试)</h2>
+<h2 class="stage-title" id="s1-2">私域运营<br>(百分百留存尝试)</h2>
 <details class="action-card">
 <summary class="action-summary">1. 标签化与回访（借助小程序后台）</summary>
 <div class="action-content">
@@ -421,7 +608,7 @@ details[open] > .action-summary::before {
 <div class="tag tag-result">预期结果</div>
 <div class="tag-content">群活跃度保持在30%以上（行业优秀水平）。群成员月复购率达到40%-60%。群内限时秒杀活动，单次可转化10-20单。</div>
 <div class="tag tag-reason">为什么这么做</div>
-<div class="tag-content">烘焙店社群运营成功案例显示，通过每日特价团购+互动内容，可以有效提升复购率（举例，可以通过每天群内特价团购，前20位特价1元蛋挞，可以成功激活沉寂客户）。社群的「从众效应」会让观望中的客户更快下单。群内互动建立的情感连接，是防止客户流失的最有效方式。也可以做抢红包的游戏，比如抢到最低的今天折扣最大，抢到最高的赠送蛋糕。其他的没有。等等社群可以开展很多营销玩法。刺激重购</div>
+<div class="tag-content">烘焙店社群运营成功案例显示，通过每天群内特价团购+互动内容，可以有效提升复购率（举例，可以通过每天群内特价团购，前20位特价1元蛋挞，可以成功激活沉寂客户）。社群的「从众效应」会让观望中的客户更快下单。群内互动建立的情感连接，是防止客户流失的最有效方式。也可以做抢红包的游戏，比如抢到最低的今天折扣最大，抢到最高的赠送蛋糕。其他的没有。等等社群可以开展很多营销玩法。刺激重购</div>
 </div>
 </details>
 <details class="action-card">
@@ -514,7 +701,65 @@ details[open] > .action-summary::before {
 </details>
 </div>
 <div class="stage-section">
-<h2 class="stage-title">成熟期<br>(2000人+)</h2>
+<h2 class="stage-title" id="s1-3">成长期<br>(500-2000人)</h2>
+<details class="action-card">
+<summary class="action-summary">1. 小程序上线</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">实现在线下单、积分查询、会员卡、优惠券自助领取、以及门店管理、客户管理等功能。<br>核心功能：产品展示+在线下单+积分系统+会员卡+优惠券+订单管理。客户可以24小时自助浏览和下单，不受店主在线时间限制。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">客户自助下单率提升到60%以上，减少沟通成本。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">小程序让客户可以24小时自助浏览和下单，不受店主在线时间限制。500+客户量时，纯微信沟通效率太低，小程序可以大幅减少重复沟通。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">2. 内容矩阵化</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">小红书从1个号扩展到2-3个号（主号+员工号），抖音保持1个号但增加发布频率到每周5条。开始尝试直播（每周1次，展示蛋糕制作过程）。全网粉丝目标：5000+，每月新增微信好友100+。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">全网粉丝达到5000+，每月新增微信好友100+。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">多账号矩阵可以覆盖更多人群，直播是2025-2026年增长最快的获客方式。单账号流量天花板有限，矩阵化运营可以突破增长瓶颈。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">3. 异业联盟升级</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">从单点合作升级为「联盟套餐」。与周边奶茶店、花店、摄影工作室联合推出「生日派对套餐」（蛋糕+奶茶+花束+拍照），共享客户资源。利益分配机制：明确引流分佣、成本分摊、利润分配规则，确保双方都有动力持续推进。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">每月通过联盟获得30-50个新客户。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">联盟套餐的客单价更高，客户体验更完整，各方都能受益。异业合作成功案例显示，实施跨界合作后，线上销售额占比平均提升20%，顾客回头率平均提升25%。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">4. 社群裂变</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">每个群发展到80人后开新群，老群成员推荐3人入群送小甜品。目标建立5-8个活跃社群。社群总人数达到400-600人，月复购贡献营收30%+。</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">社群总人数达到400-600人，月复购贡献营收30%+。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">社群是私域运营的核心阵地，规模效应会显著降低单客运营成本。小群（50-80人）的活跃度远高于大群。</div>
+</div>
+</details>
+<details class="action-card">
+<summary class="action-summary">5. 本地KOL合作</summary>
+<div class="action-content">
+<div class="tag tag-plan">具体的方案落地</div>
+<div class="tag-content">找莆田本地3-5个粉丝在5000-20000的探店博主/宝妈博主，免费送蛋糕请他们体验，换取1条小红书/抖音笔记。合作话术：「你好，我是莆田城厢区新开的NOno Cake，主打进口动物奶油低糖定制蛋糕，想邀请你来免费体验一下，如果觉得好吃的话希望能帮忙发一条分享~」</div>
+<div class="tag tag-result">预期结果</div>
+<div class="tag-content">每条笔记带来50-200个曝光，转化10-30个咨询。</div>
+<div class="tag tag-reason">为什么这么做</div>
+<div class="tag-content">本地KOL的信任背书比广告更有效，且成本仅为产品成本（30-50元）。KOC（关键意见消费者）的真实体验笔记比品牌广告的转化率高3-5倍。</div>
+</div>
+</details>
+</div>
+<div class="stage-section">
+<h2 class="stage-title" id="s1-4">成熟期<br>(2000人+)</h2>
 <details class="action-card">
 <summary class="action-summary">1. 品牌IP化</summary>
 <div class="action-content">
@@ -591,7 +836,7 @@ details[open] > .action-summary::before {
 <h1>客户生命周期管理</h1>
 </div>
 <div class="stage-section">
-<h2 class="stage-title">引入期<br>(0-7天)</h2>
+<h2 class="stage-title" id="s2-1">引入期<br>(0-7天)</h2>
 <details class="action-card">
 <summary class="action-summary">欢迎礼 <span class="time-badge">加好友后24小时内</span></summary>
 <div class="action-content">
@@ -638,7 +883,7 @@ details[open] > .action-summary::before {
 </details>
 </div>
 <div class="stage-section">
-<h2 class="stage-title">成长期<br>(7-30天)</h2>
+<h2 class="stage-title" id="s2-2">成长期<br>(7-30天)</h2>
 <details class="action-card">
 <summary class="action-summary">取蛋糕后回访 <span class="time-badge">第3天</span></summary>
 <div class="action-content">
@@ -696,7 +941,7 @@ details[open] > .action-summary::before {
 </details>
 </div>
 <div class="stage-section">
-<h2 class="stage-title">成熟期<br>(30-90天)</h2>
+<h2 class="stage-title" id="s2-3">成熟期<br>(30-90天)</h2>
 <details class="action-card">
 <summary class="action-summary">新品优先体验 <span class="time-badge">每次上新前</span></summary>
 <div class="action-content">
@@ -754,7 +999,7 @@ details[open] > .action-summary::before {
 </details>
 </div>
 <div class="stage-section">
-<h2 class="stage-title">休眠期<br>(90天+)</h2>
+<h2 class="stage-title" id="s2-4">休眠期<br>(90天+)</h2>
 <details class="action-card">
 <summary class="action-summary">温情唤醒 <span class="time-badge">第90天</span></summary>
 <div class="action-content">
@@ -821,7 +1066,7 @@ details[open] > .action-summary::before {
 </div>
 <div class="note">备注：此时间表仅供参考，ai生成根据你自己的时间来安排。如果忙不过可以找我</div>
 <div class="stage-section">
-<h2 class="stage-title">第一批<br>（立即启动）</h2>
+<h2 class="stage-title" id="s3-1">第一批<br>（立即启动）</h2>
 <details class="action-card">
 <summary class="action-summary">小红书账号设置+开始发布内容 <span class="time-badge">第1-4周</span> <span class="priority-high">高</span></summary>
 <div class="action-content">
@@ -896,7 +1141,7 @@ details[open] > .action-summary::before {
 </details>
 </div>
 <div class="stage-section">
-<h2 class="stage-title">第二批</h2>
+<h2 class="stage-title" id="s3-2">第二批</h2>
 <details class="action-card">
 <summary class="action-summary">抖音账号设置+开始拍视频 <span class="time-badge">第5-8周</span> <span class="priority-medium">中</span></summary>
 <div class="action-content">
@@ -926,7 +1171,7 @@ details[open] > .action-summary::before {
 </details>
 </div>
 <div class="stage-section">
-<h2 class="stage-title">第三批</h2>
+<h2 class="stage-title" id="s3-3">第三批</h2>
 <details class="action-card">
 <summary class="action-summary">会员体系上线 <span class="time-badge">第9-16周</span> <span class="priority-medium">中</span></summary>
 <div class="action-content">
@@ -964,6 +1209,89 @@ details[open] > .action-summary::before {
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8679;</button>
 
 <script>
+// Navigation dropdown toggle
+(function() {
+    var navItems = document.querySelectorAll('.nav-item');
+    var currentOpen = null;
+
+    // Map each nav-item to its chapter id
+    var chapterMap = {
+        'menu1': 'chapter1',
+        'menu2': 'chapter2',
+        'menu3': 'chapter3'
+    };
+
+    navItems.forEach(function(item) {
+        var link = item.querySelector('a:not(.nav-dropdown a)');
+        var dropdown = item.querySelector('.nav-dropdown');
+        var menuId = item.getAttribute('data-menu');
+
+        if (!link || !dropdown) return;
+
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Close other dropdowns
+            if (currentOpen && currentOpen !== dropdown) {
+                currentOpen.classList.remove('show');
+                currentOpen.closest('.nav-item').classList.remove('active');
+            }
+
+            // Toggle this dropdown
+            if (dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+                item.classList.remove('active');
+                currentOpen = null;
+            } else {
+                dropdown.classList.add('show');
+                item.classList.add('active');
+                currentOpen = dropdown;
+            }
+
+            // Scroll to the chapter
+            var chapterId = chapterMap[menuId];
+            if (chapterId) {
+                var chapterEl = document.getElementById(chapterId);
+                if (chapterEl) {
+                    var navHeight = 50;
+                    var elementPosition = chapterEl.getBoundingClientRect().top + window.pageYOffset;
+                    var offsetPosition = elementPosition - navHeight;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                }
+            }
+        });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (currentOpen && !e.target.closest('.nav-item')) {
+            currentOpen.classList.remove('show');
+            currentOpen.closest('.nav-item').classList.remove('active');
+            currentOpen = null;
+        }
+    });
+
+    // Scroll to anchor function (for sub-items in dropdown)
+    window.scrollToAnchor = function(id) {
+        var el = document.getElementById(id);
+        if (el) {
+            // Close dropdown
+            if (currentOpen) {
+                currentOpen.classList.remove('show');
+                currentOpen.closest('.nav-item').classList.remove('active');
+                currentOpen = null;
+            }
+            // Scroll with offset for fixed nav (50px)
+            var navHeight = 50;
+            var elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
+            var offsetPosition = elementPosition - navHeight;
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+    };
+})();
+
+// Back to top button
 window.addEventListener('scroll', function() {
     var btn = document.getElementById('backToTop');
     if (window.scrollY > 300) {
@@ -972,6 +1300,34 @@ window.addEventListener('scroll', function() {
         btn.classList.remove('show');
     }
 });
+
+// Nav hint - show once for new visitors
+(function() {
+    var hint = document.getElementById('navHint');
+    if (!hint) return;
+
+    // Check if already shown before
+    if (localStorage.getItem('navHintShown')) return;
+
+    // Show hint after 1.5s delay
+    setTimeout(function() {
+        hint.classList.add('show');
+    }, 1500);
+
+    // Auto hide after 5s
+    setTimeout(function() {
+        hint.classList.remove('show');
+        localStorage.setItem('navHintShown', '1');
+    }, 6500);
+
+    // Hide immediately when user clicks any nav item
+    document.querySelectorAll('.nav-item > a, .nav-dropdown a').forEach(function(el) {
+        el.addEventListener('click', function() {
+            hint.classList.remove('show');
+            localStorage.setItem('navHintShown', '1');
+        });
+    });
+})();
 </script>
 
 </body>
