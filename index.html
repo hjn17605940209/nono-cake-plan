@@ -2176,31 +2176,36 @@ window.addEventListener('scroll', function() {
         
         @media (max-width: 768px) {
             .search-container {
-                position: fixed;
-                top: 56px;
-                left: 0;
-                right: 0;
-                background: #3D2B1F;
-                padding: 10px 14px;
-                z-index: 999;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                position: relative;
+                margin-left: auto;
+                display: flex;
+                align-items: center;
+                flex-shrink: 1;
+                min-width: 0;
             }
             
             #searchInput {
-                width: 100%;
-                padding: 8px 36px 8px 14px;
-                font-size: 13px;
+                padding: 6px 32px 6px 12px;
+                font-size: 12px;
+                width: 120px;
+                min-width: 80px;
+                max-width: 140px;
             }
             
             #searchInput:focus {
-                width: 100%;
+                width: 140px;
+                min-width: 100px;
+            }
+            
+            #searchButton {
+                font-size: 14px;
+                padding: 6px;
             }
             
             .search-results {
                 top: 100%;
-                left: 14px;
-                right: 14px;
-                width: auto;
+                right: 0;
+                width: 280px;
                 max-height: 300px;
             }
             
@@ -2219,18 +2224,34 @@ window.addEventListener('scroll', function() {
         
         @media (max-width: 480px) {
             .search-container {
-                top: 50px;
-                padding: 8px 10px;
+                flex-shrink: 1;
             }
             
             #searchInput {
-                padding: 7px 32px 7px 12px;
+                padding: 5px 28px 5px 10px;
+                font-size: 11px;
+                width: 100px;
+                min-width: 60px;
+                max-width: 120px;
+            }
+            
+            #searchInput:focus {
+                width: 120px;
+                min-width: 80px;
+            }
+            
+            #searchButton {
                 font-size: 12px;
+                padding: 4px;
             }
             
             .search-results {
-                left: 10px;
-                right: 10px;
+                width: 240px;
+                max-height: 250px;
+            }
+            
+            .search-result-item {
+                padding: 8px 12px;
             }
         }
     `;
