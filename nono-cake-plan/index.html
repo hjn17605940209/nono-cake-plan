@@ -1751,7 +1751,7 @@ window.addEventListener('scroll', function() {
         }
         
         #searchInput {
-            padding: 8px 16px;
+            padding: 10px 40px 10px 16px;
             border: none;
             border-radius: 24px;
             font-size: 14px;
@@ -1778,11 +1778,15 @@ window.addEventListener('scroll', function() {
             color: white;
             font-size: 16px;
             cursor: pointer;
-            margin-left: -32px;
+            position: absolute;
+            right: 8px;
             z-index: 1;
             padding: 8px;
             border-radius: 50%;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         #searchButton:hover {
