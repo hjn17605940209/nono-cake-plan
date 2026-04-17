@@ -58,13 +58,14 @@ body {
     align-items: center;
     padding: 0 24px;
     height: 60px;
+    flex-wrap: nowrap;
 }
 
 .nav-brand {
     font-weight: 700;
     font-size: 18px;
     white-space: nowrap;
-    margin-right: 40px;
+    margin-right: auto;
     color: #FFFFFF;
     letter-spacing: -0.2px;
     display: flex;
@@ -88,6 +89,7 @@ body {
     display: flex;
     gap: 0;
     overflow: visible;
+    flex-shrink: 0;
 }
 
 .nav-links > .nav-item {
@@ -540,7 +542,7 @@ details[open] > .action-summary::before {
 
 .toc-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
 }
 
@@ -603,7 +605,7 @@ details[open] > .action-summary::before {
     }
 
     .toc-content {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         gap: 16px;
     }
 }
@@ -616,7 +618,7 @@ details[open] > .action-summary::before {
 
     .nav-brand {
         font-size: 15px;
-        margin-right: 12px;
+        margin-right: auto;
         gap: 8px;
     }
 
@@ -767,7 +769,7 @@ details[open] > .action-summary::before {
     }
 
     .toc-content {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, 1fr);
         gap: 12px;
     }
 
@@ -823,7 +825,7 @@ details[open] > .action-summary::before {
 
     .nav-brand {
         font-size: 13px;
-        margin-right: 8px;
+        margin-right: auto;
         gap: 6px;
     }
 
@@ -1951,6 +1953,7 @@ window.addEventListener('scroll', function() {
             position: relative;
             display: flex;
             align-items: center;
+            flex-shrink: 0;
         }
         
         #searchInput {
@@ -1958,7 +1961,9 @@ window.addEventListener('scroll', function() {
             border: none;
             border-radius: 24px;
             font-size: 14px;
-            width: 200px;
+            width: 180px;
+            min-width: 100px;
+            max-width: 200px;
             transition: all 0.3s ease;
             background: rgba(255,255,255,0.1);
             color: white;
@@ -1970,7 +1975,8 @@ window.addEventListener('scroll', function() {
         
         #searchInput:focus {
             outline: none;
-            width: 240px;
+            width: 200px;
+            min-width: 140px;
             background: rgba(255,255,255,0.15);
             box-shadow: 0 0 0 2px rgba(255,255,255,0.2);
         }
