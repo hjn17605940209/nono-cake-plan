@@ -596,177 +596,378 @@ details[open] > .action-summary::before {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-    .nav-inner {
-        padding: 0 16px;
-    }
-    
-    .nav-brand {
-        font-size: 16px;
-        margin-right: 24px;
-    }
-    
-    .nav-links > .nav-item > a {
-        font-size: 14px;
-        padding: 6px 16px;
-        margin: 10px 4px;
-    }
-    
+@media (max-width: 1024px) {
     .container {
         max-width: 100%;
-        padding: 70px 16px 40px;
+        padding: 80px 20px 48px;
     }
-    
-    .chapter-header h1 {
-        font-size: 28px;
-    }
-    
-    .stage-section {
-        padding: 20px;
-    }
-    
-    .stage-title {
-        font-size: 18px;
-        padding: 14px 16px;
-    }
-    
-    .action-summary {
-        padding: 16px 20px;
-        padding-left: 28px;
-    }
-    
-    .action-content {
-        padding: 0 20px 20px;
-    }
-    
-    .back-to-top {
-        width: 48px;
-        height: 48px;
-        font-size: 20px;
-        bottom: 24px;
-        right: 24px;
+
+    .toc-content {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .nav-inner {
+        padding: 0 12px;
         height: 56px;
     }
-    
+
     .nav-brand {
-        font-size: 14px;
-        margin-right: 16px;
+        font-size: 15px;
+        margin-right: 12px;
+        gap: 8px;
     }
-    
+
     .nav-brand img {
-        height: 32px;
+        height: 34px;
     }
-    
+
     .nav-links > .nav-item > a {
         font-size: 13px;
-        padding: 5px 12px;
+        padding: 5px 10px;
         margin: 8px 2px;
+        border-radius: 16px;
     }
-    
+
+    .nav-links > .nav-item > a:hover,
+    .nav-links > .nav-item.active > a {
+        transform: none;
+        box-shadow: none;
+    }
+
     .container {
-        padding: 60px 12px 32px;
+        max-width: 100%;
+        padding: 64px 14px 40px;
     }
-    
+
+    .chapter {
+        margin-bottom: 32px;
+    }
+
+    .chapter-header {
+        padding: 24px 0 16px;
+        margin-bottom: 20px;
+    }
+
     .chapter-header h1 {
-        font-size: 24px;
+        font-size: 26px;
     }
-    
+
     .chapter-header h1::after {
         width: 60px;
         height: 3px;
     }
-    
+
+    .chapter-subtitle {
+        font-size: 13px;
+    }
+
     .stage-section {
         padding: 16px;
         border-radius: 12px;
+        margin-bottom: 24px;
     }
-    
+
     .stage-title {
-        font-size: 16px;
-        padding: 12px 14px;
+        font-size: 17px;
+        padding: 12px 16px;
+        display: block;
+        border-radius: 8px;
     }
-    
+
+    .stage-title:hover {
+        transform: none;
+    }
+
     .action-card {
         border-radius: 12px;
+        margin-bottom: 12px;
     }
-    
+
     .action-card::before {
         border-radius: 12px 0 0 12px;
     }
-    
+
+    .action-card:hover {
+        transform: none;
+    }
+
     .action-summary {
         padding: 14px 16px;
-        padding-left: 24px;
+        padding-left: 36px;
         font-size: 15px;
+        gap: 8px;
     }
-    
+
     .action-summary::before {
         left: 16px;
         font-size: 12px;
+        width: 16px;
     }
-    
+
     .action-content {
         padding: 0 16px 16px;
     }
-    
+
     .tag {
         padding: 4px 12px;
         font-size: 12px;
         margin-top: 12px;
+        border-radius: 16px;
     }
-    
+
     .tag-content {
         padding: 10px 14px;
         font-size: 13px;
+        line-height: 1.6;
+        border-radius: 8px;
     }
-    
+
+    .time-badge,
+    .priority-high,
+    .priority-medium {
+        font-size: 12px;
+        padding: 3px 10px;
+    }
+
     .note {
-        padding: 14px 16px;
-        margin-left: 8px;
+        padding: 12px 14px;
+        margin-left: 12px;
+        margin-bottom: 16px;
+        font-size: 13px;
+        border-radius: 0 8px 8px 0;
     }
-    
+
     .note::before {
         left: -12px;
         width: 24px;
         height: 24px;
         font-size: 12px;
     }
-    
+
     .back-to-top {
         width: 44px;
         height: 44px;
         font-size: 18px;
-        bottom: 16px;
-        right: 16px;
+        bottom: 20px;
+        right: 20px;
     }
-    
+
+    .toc {
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 28px;
+    }
+
+    .toc-title {
+        font-size: 20px;
+        margin-bottom: 16px;
+    }
+
+    .toc-content {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .toc-section {
+        padding: 16px;
+    }
+
+    .toc-section-title {
+        font-size: 15px;
+    }
+
+    .toc-list a {
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+
     .nav-dropdown {
         position: fixed;
         top: 56px;
         left: 0;
         right: 0;
         border-radius: 0;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         padding: 8px 0;
-        gap: 2px;
+        gap: 0;
     }
-    
+
     .nav-dropdown a {
-        padding: 8px 16px;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .nav-dropdown a:hover {
+        padding-left: 24px;
+    }
+
+    .nav-dropdown a:hover::before {
+        left: 12px;
+    }
+
+    .nav-hint {
+        top: 64px;
+        font-size: 12px;
+        padding: 6px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-inner {
+        height: 50px;
+        padding: 0 10px;
+    }
+
+    .nav-brand {
+        font-size: 13px;
+        margin-right: 8px;
+        gap: 6px;
+    }
+
+    .nav-brand img {
+        height: 28px;
+        border-radius: 6px;
+    }
+
+    .nav-links > .nav-item > a {
+        font-size: 12px;
+        padding: 4px 8px;
+        margin: 8px 1px;
+        border-radius: 14px;
+    }
+
+    .container {
+        padding: 56px 10px 32px;
+    }
+
+    .chapter-header h1 {
+        font-size: 22px;
+    }
+
+    .chapter-header h1::after {
+        width: 50px;
+        height: 3px;
+        margin: 14px auto 0;
+    }
+
+    .chapter-subtitle {
+        font-size: 12px;
+        margin-top: 6px;
+    }
+
+    .stage-section {
+        padding: 12px;
+        border-radius: 10px;
+    }
+
+    .stage-title {
+        font-size: 15px;
+        padding: 10px 12px;
+    }
+
+    .action-card {
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+    .action-card::before {
+        width: 3px;
+        border-radius: 10px 0 0 10px;
+    }
+
+    .action-summary {
+        padding: 12px 14px;
+        padding-left: 30px;
+        font-size: 14px;
+    }
+
+    .action-summary::before {
+        left: 14px;
+        font-size: 11px;
+    }
+
+    .action-content {
+        padding: 0 14px 14px;
+    }
+
+    .tag {
+        padding: 3px 10px;
+        font-size: 11px;
+        margin-top: 10px;
+    }
+
+    .tag-content {
+        padding: 8px 12px;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .note {
+        padding: 10px 12px;
+        margin-left: 10px;
+        font-size: 12px;
+    }
+
+    .note::before {
+        left: -10px;
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+    }
+
+    .back-to-top {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        bottom: 16px;
+        right: 16px;
+    }
+
+    .toc {
+        padding: 16px;
+        border-radius: 10px;
+    }
+
+    .toc-title {
+        font-size: 18px;
+    }
+
+    .toc-section {
+        padding: 12px;
+    }
+
+    .toc-section-title {
+        font-size: 14px;
+    }
+
+    .toc-list li {
+        margin-bottom: 8px;
+    }
+
+    .toc-list a {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+
+    .nav-dropdown a {
+        padding: 10px 16px;
         font-size: 13px;
     }
-    
-    .nav-dropdown a:hover {
-        padding-left: 20px;
+
+    .nav-hint {
+        top: 58px;
+        font-size: 11px;
+        padding: 5px 14px;
     }
-    
-    .nav-dropdown a:hover::before {
-        left: 8px;
+}
+
+/* Large screens */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 960px;
     }
 }
 
@@ -1651,9 +1852,9 @@ details[open] > .action-summary::before {
             if (chapterId) {
                 var chapterEl = document.getElementById(chapterId);
                 if (chapterEl) {
-                    var navHeight = 50;
+                    var navH = document.querySelector('.nav').offsetHeight;
                     var elementPosition = chapterEl.getBoundingClientRect().top + window.pageYOffset;
-                    var offsetPosition = elementPosition - navHeight;
+                    var offsetPosition = elementPosition - navH;
                     window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
                 }
             }
@@ -1679,10 +1880,10 @@ details[open] > .action-summary::before {
                 currentOpen.closest('.nav-item').classList.remove('active');
                 currentOpen = null;
             }
-            // Scroll with offset for fixed nav (50px)
-            var navHeight = 50;
+            // Scroll with offset for fixed nav
+            var navH = document.querySelector('.nav').offsetHeight;
             var elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
-            var offsetPosition = elementPosition - navHeight;
+            var offsetPosition = elementPosition - navH;
             window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
         }
     };
@@ -1844,17 +2045,19 @@ window.addEventListener('scroll', function() {
         @media (max-width: 768px) {
             .search-container {
                 position: fixed;
-                top: 60px;
+                top: 56px;
                 left: 0;
                 right: 0;
                 background: #3D2B1F;
-                padding: 12px 16px;
+                padding: 10px 14px;
                 z-index: 999;
                 box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             }
             
             #searchInput {
                 width: 100%;
+                padding: 8px 36px 8px 14px;
+                font-size: 13px;
             }
             
             #searchInput:focus {
@@ -1863,9 +2066,39 @@ window.addEventListener('scroll', function() {
             
             .search-results {
                 top: 100%;
-                left: 16px;
-                right: 16px;
+                left: 14px;
+                right: 14px;
                 width: auto;
+                max-height: 300px;
+            }
+            
+            .search-result-item {
+                padding: 10px 14px;
+            }
+            
+            .search-result-title {
+                font-size: 14px;
+            }
+            
+            .search-result-content {
+                font-size: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .search-container {
+                top: 50px;
+                padding: 8px 10px;
+            }
+            
+            #searchInput {
+                padding: 7px 32px 7px 12px;
+                font-size: 12px;
+            }
+            
+            .search-results {
+                left: 10px;
+                right: 10px;
             }
         }
     `;
@@ -1914,9 +2147,9 @@ window.addEventListener('scroll', function() {
                 
                 resultItem.addEventListener('click', function() {
                     // Scroll to the element with offset
-                    var navHeight = 80;
+                    var navH = document.querySelector('.nav').offsetHeight;
                     var elementPosition = result.element.getBoundingClientRect().top + window.pageYOffset;
-                    var offsetPosition = elementPosition - navHeight;
+                    var offsetPosition = elementPosition - navH;
                     window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
                     
                     searchResults.classList.remove('show');
@@ -1995,7 +2228,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
         
         var targetElement = document.querySelector(targetId);
         if (targetElement) {
-            var headerOffset = 80; // Adjust based on your header height
+            var headerOffset = document.querySelector('.nav').offsetHeight;
             var elementPosition = targetElement.getBoundingClientRect().top;
             var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
             
