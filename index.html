@@ -86,10 +86,41 @@ body {
     border-radius: 8px;
 }
 
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1002;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #FFFFFF;
+    border-radius: 1px;
+    transition: all 0.3s ease;
+}
+
+.nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
 .nav-links {
     display: flex;
     gap: 0;
-    overflow: hidden;
+    overflow: visible;
     flex-shrink: 1;
     min-width: 0;
 }
@@ -618,6 +649,7 @@ details[open] > .action-summary::before {
     .nav-inner {
         padding: 0 16px;
         height: 56px;
+        justify-content: space-between;
     }
 
     .nav-brand {
@@ -630,11 +662,43 @@ details[open] > .action-summary::before {
         height: 36px;
     }
 
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 56px;
+        left: 0;
+        right: 0;
+        background: #3D2B1F;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        gap: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transform: translateY(-150%);
+        opacity: 0;
+        transition: all 0.3s ease;
+        z-index: 1001;
+    }
+
+    .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .nav-links > .nav-item {
+        width: 100%;
+        text-align: center;
+    }
+
     .nav-links > .nav-item > a {
-        font-size: 14px;
-        padding: 6px 12px;
-        margin: 10px 2px;
-        border-radius: 18px;
+        font-size: 16px;
+        padding: 12px 20px;
+        margin: 0;
+        border-radius: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
     .container {
@@ -659,17 +723,8 @@ details[open] > .action-summary::before {
         height: 32px;
     }
 
-    .nav-links > .nav-item > a {
-        font-size: 12px;
-        padding: 4px 8px;
-        margin: 7px 1px;
-        border-radius: 14px;
-    }
-
-    .nav-links > .nav-item > a:hover,
-    .nav-links > .nav-item.active > a {
-        transform: none;
-        box-shadow: none;
+    .nav-links {
+        top: 52px;
     }
 
     .container {
@@ -678,18 +733,16 @@ details[open] > .action-summary::before {
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
     .nav-inner {
-        padding: 0 10px;
+        padding: 0 8px;
         height: 48px;
-        position: relative;
     }
 
     .nav-brand {
         font-size: 13px;
         margin-right: 8px;
-        gap: 5px;
-        flex-shrink: 0;
+        gap: 4px;
     }
 
     .nav-brand img {
@@ -697,59 +750,18 @@ details[open] > .action-summary::before {
     }
 
     .nav-links {
-        flex-shrink: 1;
-        min-width: 0;
-        overflow: hidden;
-    }
-
-    .nav-links > .nav-item {
-        flex-shrink: 0;
+        top: 48px;
+        padding: 16px 0;
     }
 
     .nav-links > .nav-item > a {
-        font-size: 11px;
-        padding: 3px 6px;
-        margin: 5px 1px;
-        border-radius: 12px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 80px;
+        font-size: 14px;
+        padding: 10px 16px;
     }
 
     .container {
         max-width: 100%;
-        padding: 64px 12px 36px;
-    }
-}
-
-@media (max-width: 480px) {
-    .nav-inner {
-        padding: 0 8px;
-        height: 44px;
-    }
-
-    .nav-brand {
-        font-size: 12px;
-        margin-right: 6px;
-        gap: 4px;
-    }
-
-    .nav-brand img {
-        height: 24px;
-    }
-
-    .nav-links > .nav-item > a {
-        font-size: 10px;
-        padding: 2px 4px;
-        margin: 4px 1px;
-        border-radius: 10px;
-        max-width: 60px;
-    }
-
-    .container {
-        max-width: 100%;
-        padding: 60px 10px 32px;
+        padding: 64px 10px 32px;
     }
 }
 
@@ -1122,7 +1134,12 @@ details[open] > .action-summary::before {
 <nav class="nav" aria-label="主导航">
 <div class="nav-inner">
 <span class="nav-brand" role="banner"><img src="logo.jpg" alt="NOno Cake" aria-hidden="false">NOno Cake</span>
-<div class="nav-links" role="menubar">
+<div class="nav-toggle" id="navToggle" onclick="toggleMenu()">
+<span></span>
+<span></span>
+<span></span>
+</div>
+<div class="nav-links" id="navLinks" role="menubar">
 <div class="nav-item" data-menu="menu1" role="none">
 <a href="javascript:void(0)" role="menuitem" aria-haspopup="true" aria-expanded="false">获客方案</a>
 <div class="nav-dropdown" id="menu1" role="menu" aria-labelledby="获客方案">
@@ -2297,7 +2314,25 @@ window.addEventListener('scroll', function() {
             searchResults.classList.remove('show');
         }
     });
-})();
+});
+
+// Toggle mobile menu
+function toggleMenu() {
+    var navToggle = document.getElementById('navToggle');
+    var navLinks = document.getElementById('navLinks');
+    navToggle.classList.toggle('active');
+    navLinks.classList.toggle('active');
+}
+
+// Close menu when clicking on a link
+document.querySelectorAll('.nav-links a').forEach(function(link) {
+    link.addEventListener('click', function() {
+        var navToggle = document.getElementById('navToggle');
+        var navLinks = document.getElementById('navLinks');
+        navToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+    });
+});
 
 // Scroll animations
 (function() {
