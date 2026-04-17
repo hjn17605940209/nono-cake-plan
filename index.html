@@ -682,16 +682,28 @@ details[open] > .action-summary::before {
     .nav-inner {
         padding: 0 10px;
         height: 48px;
+        position: relative;
     }
 
     .nav-brand {
         font-size: 13px;
         margin-right: 8px;
         gap: 5px;
+        flex-shrink: 0;
     }
 
     .nav-brand img {
         height: 28px;
+    }
+
+    .nav-links {
+        flex-shrink: 1;
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    .nav-links > .nav-item {
+        flex-shrink: 0;
     }
 
     .nav-links > .nav-item > a {
@@ -699,11 +711,45 @@ details[open] > .action-summary::before {
         padding: 3px 6px;
         margin: 5px 1px;
         border-radius: 12px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 80px;
     }
 
     .container {
         max-width: 100%;
         padding: 64px 12px 36px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-inner {
+        padding: 0 8px;
+        height: 44px;
+    }
+
+    .nav-brand {
+        font-size: 12px;
+        margin-right: 6px;
+        gap: 4px;
+    }
+
+    .nav-brand img {
+        height: 24px;
+    }
+
+    .nav-links > .nav-item > a {
+        font-size: 10px;
+        padding: 2px 4px;
+        margin: 4px 1px;
+        border-radius: 10px;
+        max-width: 60px;
+    }
+
+    .container {
+        max-width: 100%;
+        padding: 60px 10px 32px;
     }
 }
 
