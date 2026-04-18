@@ -3,13 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="NOno Cake 私域运营方案，包含获客方案、客户生命周期管理和执行优先级时间表">
+<meta name="description" content="NOno Cake 私域运营方案：涵盖小红书/抖音同城获客、社群运营、会员体系、客户生命周期管理等完整策略，助力烘焙品牌实现从获客到留存的高复购私域增长。">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#C4956A">
+<meta property="og:title" content="NOno Cake 私域运营方案">
+<meta property="og:description" content="从获客到留存，打造高复购率的私域增长飞轮。涵盖小红书/抖音获客、社群运营、会员体系等完整策略。">
+<meta property="og:image" content="logo.jpg">
+<meta property="og:url" content="https://nonocake.github.io/nono-cake-plan/">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://nonocake.github.io/nono-cake-plan/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
 <title>NOno Cake 私域运营方案</title>
 <style>
+:root {
+    --color-primary: #C4956A;
+    --color-primary-light: #E8A87C;
+    --color-text: #3D2B1F;
+    --color-text-secondary: #5D4E37;
+    --color-bg: #FDFBF7;
+    --color-bg-warm: #FFF8F0;
+    --color-border: #E8DDD0;
+    --color-border-light: #F0E6DA;
+    --color-surface: #FFFFFF;
+    --color-nav: #3D2B1F;
+    --color-nav-text: rgba(255,255,255,0.85);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -30,13 +51,14 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-    background: #FDFBF7;
-    color: #3D2B1F;
+    font-family: 'Noto Serif SC', -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(180deg, var(--color-bg) 0%, #F5EDE3 100%);
+    background-attachment: fixed;
+    color: var(--color-text);
     line-height: 1.6;
     padding-bottom: 60px;
     min-height: 100vh;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 /* Navigation */
@@ -45,7 +67,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background: #3D2B1F;
+    background: var(--color-nav);
     color: white;
     z-index: 1000;
     box-shadow: 0 2px 12px rgba(0,0,0,0.15);
@@ -72,7 +94,7 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .nav-brand:hover {
@@ -96,6 +118,9 @@ body {
     cursor: pointer;
     z-index: 1002;
     position: relative;
+    background: none;
+    border: none;
+    padding: 0;
 }
 
 .nav-toggle span {
@@ -133,7 +158,7 @@ body {
 }
 
 .nav-links > .nav-item > a {
-    color: rgba(255,255,255,0.85);
+    color: var(--color-nav-text);
     text-decoration: none;
     font-size: 15px;
     padding: 8px 14px;
@@ -164,33 +189,35 @@ body {
 
 /* Dropdown */
 .nav-dropdown {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
     position: absolute;
     top: 100%;
     left: 0;
-    background: #FFFFFF;
+    background: var(--color-surface);
     box-shadow: 0 8px 32px rgba(0,0,0,0.15), 0 2px 6px rgba(0,0,0,0.1);
     border-radius: 12px;
     padding: 12px 0;
     min-width: 180px;
     z-index: 1001;
-    border: 1px solid #E8DDD0;
+    border: 1px solid var(--color-border);
     flex-direction: column;
     gap: 4px;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
 }
 
 .nav-dropdown.show {
-    display: flex;
+    visibility: visible;
     opacity: 1;
     transform: translateY(0);
+    pointer-events: auto;
 }
 
 .nav-dropdown a {
     display: block;
-    color: #3D2B1F;
+    color: var(--color-text);
     text-decoration: none;
     font-size: 14px;
     padding: 10px 20px;
@@ -201,8 +228,8 @@ body {
 }
 
 .nav-dropdown a:hover {
-    color: #C4956A;
-    background: #FFF8F0;
+    color: var(--color-primary);
+    background: var(--color-bg-warm);
     padding-left: 24px;
 }
 
@@ -210,8 +237,68 @@ body {
     content: "→";
     position: absolute;
     left: 12px;
-    color: #C4956A;
+    color: var(--color-primary);
     font-size: 12px;
+}
+
+/* Hero */
+.hero {
+    width: 100%;
+    text-align: center;
+    padding: 60px 0;
+}
+
+.hero-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hero-logo {
+    border-radius: 16px;
+    max-width: 120px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.hero-title {
+    font-size: 32px;
+    font-weight: 700;
+    font-family: 'Noto Serif SC', serif;
+    color: var(--color-text);
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+}
+
+.hero-subtitle {
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    margin-bottom: 0;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-stat-number {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1.2;
+}
+
+.hero-stat-label {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    margin-top: 4px;
 }
 
 /* Main Content */
@@ -230,20 +317,21 @@ body {
 .chapter-header {
     padding: 40px 0 24px;
     margin-bottom: 32px;
-    border-bottom: 2px solid #F0E6DA;
+    border-bottom: 2px solid var(--color-border-light);
     text-align: center;
 }
 
 .chapter-header h1 {
     font-size: 36px;
     font-weight: 700;
-    color: #3D2B1F;
+    color: var(--color-text);
     letter-spacing: -0.8px;
     line-height: 1.2;
     padding: 0;
     border-left: none;
     border-radius: 0;
     margin-bottom: 12px;
+    font-family: 'Noto Serif SC', serif;
 }
 
 .chapter-header h1::after {
@@ -251,7 +339,7 @@ body {
     display: block;
     width: 80px;
     height: 4px;
-    background: #C4956A;
+    background: var(--color-primary);
     margin: 20px auto 0;
     border-radius: 2px;
 }
@@ -268,23 +356,23 @@ body {
 /* Stage Section */
 .stage-section {
     margin-bottom: 32px;
-    background: #FFFFFF;
+    background: var(--color-surface);
     border-radius: 16px;
     padding: 24px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    border: 1px solid #F0E6DA;
+    border: 1px solid var(--color-border-light);
 }
 
 /* Stage titles */
 .stage-title {
     font-size: 20px;
-    color: #5D4E37;
+    color: var(--color-text-secondary);
     padding: 16px 20px;
     border-radius: 12px;
     margin-bottom: 20px;
-    border-left: 4px solid #C4956A;
+    border-left: 4px solid var(--color-primary);
     font-weight: 600;
-    background: #FFF8F0;
+    background: var(--color-bg-warm);
     letter-spacing: -0.2px;
     display: inline-block;
     box-shadow: 0 2px 8px rgba(196, 149, 106, 0.1);
@@ -298,12 +386,12 @@ body {
 
 /* Action Card */
 .action-card {
-    background: #FFFFFF;
+    background: var(--color-surface);
     border-radius: 16px;
     margin-bottom: 16px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     overflow: hidden;
-    border: 1px solid #F0E6DA;
+    border: 1px solid var(--color-border-light);
     transition: all 0.3s ease;
     position: relative;
 }
@@ -320,7 +408,7 @@ body {
     left: 0;
     width: 4px;
     height: 100%;
-    background: linear-gradient(180deg, #C4956A 0%, #E8A87C 100%);
+    background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
     border-radius: 16px 0 0 16px;
 }
 
@@ -329,7 +417,7 @@ body {
     cursor: pointer;
     font-weight: 600;
     font-size: 16px;
-    color: #3D2B1F;
+    color: var(--color-text);
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -342,7 +430,7 @@ body {
 }
 
 .action-summary:hover {
-    background: #FFF8F0;
+    background: var(--color-bg-warm);
 }
 
 .action-summary::-webkit-details-marker {
@@ -354,7 +442,7 @@ body {
     font-size: 14px;
     transition: transform 0.3s ease;
     flex-shrink: 0;
-    color: #C4956A;
+    color: var(--color-primary);
     position: absolute;
     left: 24px;
     top: 50%;
@@ -369,7 +457,7 @@ details[open] > .action-summary::before {
 
 .action-content {
     padding: 0 24px 24px;
-    border-top: 1px solid #F0E6DA;
+    border-top: 1px solid var(--color-border-light);
     background: #FAF8F5;
 }
 
@@ -410,11 +498,22 @@ details[open] > .action-summary::before {
     border: none;
 }
 
+.tag-pending {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #E65100;
+    background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+    padding: 2px 10px;
+    border-radius: 12px;
+    border: 1px dashed #E65100;
+    vertical-align: middle;
+}
+
 .tag-content {
     font-size: 14px;
-    color: #5D4E37;
+    color: var(--color-text-secondary);
     line-height: 1.7;
-    padding-left: 8px;
     background: rgba(255,255,255,0.6);
     padding: 12px 16px;
     border-radius: 12px;
@@ -426,8 +525,8 @@ details[open] > .action-summary::before {
 .time-badge {
     font-size: 13px;
     font-weight: 500;
-    color: #5D4E37;
-    background: linear-gradient(135deg, #FFF8F0 0%, #F5E8D5 100%);
+    color: var(--color-text-secondary);
+    background: linear-gradient(135deg, var(--color-bg-warm) 0%, #F5E8D5 100%);
     padding: 4px 12px;
     border-radius: 24px;
     border: none;
@@ -462,7 +561,7 @@ details[open] > .action-summary::before {
     font-size: 13px;
     font-weight: 600;
     color: #E65100;
-    background: linear-gradient(135deg, #FFF8F0 0%, #FFE6D0 100%);
+    background: linear-gradient(135deg, var(--color-bg-warm) 0%, #FFE6D0 100%);
     padding: 4px 12px;
     border-radius: 24px;
     border: none;
@@ -477,13 +576,13 @@ details[open] > .action-summary::before {
 
 /* Note */
 .note {
-    background: linear-gradient(135deg, #FFF8F0 0%, #F5E8D5 100%);
-    border-left: 4px solid #C4956A;
+    background: linear-gradient(135deg, var(--color-bg-warm) 0%, #F5E8D5 100%);
+    border-left: 4px solid var(--color-primary);
     padding: 16px 20px;
     border-radius: 0 12px 12px 0;
     margin-bottom: 24px;
     font-size: 14px;
-    color: #5D4E37;
+    color: var(--color-text-secondary);
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     position: relative;
 }
@@ -494,7 +593,7 @@ details[open] > .action-summary::before {
     left: -16px;
     top: 50%;
     transform: translateY(-50%);
-    background: #C4956A;
+    background: var(--color-primary);
     color: white;
     width: 32px;
     height: 32px;
@@ -513,7 +612,7 @@ details[open] > .action-summary::before {
     right: 32px;
     width: 52px;
     height: 52px;
-    background: linear-gradient(135deg, #C4956A 0%, #E8A87C 100%);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
     color: #FFFFFF;
     border: none;
     border-radius: 50%;
@@ -551,18 +650,18 @@ details[open] > .action-summary::before {
 
 /* Table of Contents */
 .toc {
-    background: #FFFFFF;
+    background: var(--color-surface);
     border-radius: 16px;
     padding: 32px;
     margin-bottom: 40px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    border: 1px solid #F0E6DA;
+    border: 1px solid var(--color-border-light);
 }
 
 .toc-title {
     font-size: 24px;
     font-weight: 700;
-    color: #3D2B1F;
+    color: var(--color-text);
     margin-bottom: 24px;
     text-align: center;
     position: relative;
@@ -573,7 +672,7 @@ details[open] > .action-summary::before {
     display: block;
     width: 60px;
     height: 3px;
-    background: #C4956A;
+    background: var(--color-primary);
     margin: 12px auto 0;
     border-radius: 2px;
 }
@@ -585,7 +684,7 @@ details[open] > .action-summary::before {
 }
 
 .toc-section {
-    background: #FFF8F0;
+    background: var(--color-bg-warm);
     border-radius: 12px;
     padding: 20px;
     transition: all 0.3s ease;
@@ -599,10 +698,10 @@ details[open] > .action-summary::before {
 .toc-section-title {
     font-size: 16px;
     font-weight: 600;
-    color: #5D4E37;
+    color: var(--color-text-secondary);
     margin-bottom: 16px;
     padding-bottom: 8px;
-    border-bottom: 2px solid #E8A87C;
+    border-bottom: 2px solid var(--color-primary-light);
 }
 
 .toc-list {
@@ -621,7 +720,7 @@ details[open] > .action-summary::before {
 }
 
 .toc-list a {
-    color: #5D4E37;
+    color: var(--color-text-secondary);
     text-decoration: none;
     font-size: 14px;
     transition: all 0.3s ease;
@@ -631,7 +730,7 @@ details[open] > .action-summary::before {
 }
 
 .toc-list a:hover {
-    color: #C4956A;
+    color: var(--color-primary);
     background: rgba(196, 149, 106, 0.1);
 }
 
@@ -709,13 +808,13 @@ details[open] > .action-summary::before {
 
 .search-result-item {
     padding: 12px 16px;
-    border-bottom: 1px solid #F0E6DA;
+    border-bottom: 1px solid var(--color-border-light);
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .search-result-item:hover {
-    background: #FFF8F0;
+    background: var(--color-bg-warm);
 }
 
 .search-result-item:last-child {
@@ -724,15 +823,23 @@ details[open] > .action-summary::before {
 
 .search-result-title {
     font-weight: 600;
-    color: #3D2B1F;
+    color: var(--color-text);
     margin-bottom: 4px;
     font-size: 14px;
 }
 
 .search-result-content {
     font-size: 13px;
-    color: #5D4E37;
+    color: var(--color-text-secondary);
     line-height: 1.4;
+}
+
+/* Search result highlight */
+mark {
+    background: rgba(196, 149, 106, 0.25);
+    color: var(--color-text);
+    padding: 1px 2px;
+    border-radius: 2px;
 }
 
 /* Responsive */
@@ -774,7 +881,7 @@ details[open] > .action-summary::before {
         top: 56px;
         left: 0;
         right: 0;
-        background: #3D2B1F;
+        background: var(--color-nav);
         flex-direction: column;
         align-items: center;
         padding: 20px 0;
@@ -834,39 +941,30 @@ details[open] > .action-summary::before {
         max-width: 100%;
         padding: 68px 14px 40px;
     }
-}
 
-@media (max-width: 480px) {
-    .nav-inner {
-        padding: 0 8px;
-        height: 48px;
+    .hero {
+        padding: 40px 0;
     }
 
-    .nav-brand {
-        font-size: 13px;
-        margin-right: 8px;
-        gap: 4px;
+    .hero-title {
+        font-size: 26px;
     }
 
-    .nav-brand img {
-        height: 28px;
-    }
-
-    .nav-links {
-        top: 48px;
-        padding: 16px 0;
-    }
-
-    .nav-links > .nav-item > a {
+    .hero-subtitle {
         font-size: 14px;
-        padding: 10px 16px;
     }
 
-    .container {
-        max-width: 100%;
-        padding: 64px 10px 32px;
+    .hero-stats {
+        gap: 24px;
     }
-}
+
+    .hero-stat-number {
+        font-size: 22px;
+    }
+
+    .hero-stat-label {
+        font-size: 12px;
+    }
 
     .chapter {
         margin-bottom: 32px;
@@ -993,7 +1091,7 @@ details[open] > .action-summary::before {
     }
 
     .toc-content {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: 1fr;
         gap: 12px;
     }
 
@@ -1043,30 +1141,33 @@ details[open] > .action-summary::before {
 
 @media (max-width: 480px) {
     .nav-inner {
-        height: 50px;
-        padding: 0 10px;
+        padding: 0 8px;
+        height: 48px;
     }
 
     .nav-brand {
         font-size: 13px;
         margin-right: 8px;
-        gap: 6px;
+        gap: 4px;
     }
 
     .nav-brand img {
         height: 28px;
-        border-radius: 6px;
+    }
+
+    .nav-links {
+        top: 48px;
+        padding: 16px 0;
     }
 
     .nav-links > .nav-item > a {
-        font-size: 12px;
-        padding: 4px 8px;
-        margin: 8px 1px;
-        border-radius: 14px;
+        font-size: 14px;
+        padding: 10px 16px;
     }
 
     .container {
-        padding: 56px 10px 32px;
+        max-width: 100%;
+        padding: 64px 10px 32px;
     }
 
     .chapter-header h1 {
@@ -1193,7 +1294,7 @@ details[open] > .action-summary::before {
 /* Large screens */
 @media (min-width: 1400px) {
     .container {
-        max-width: 960px;
+        max-width: 1200px;
     }
 }
 
@@ -1236,12 +1337,12 @@ details[open] > .action-summary::before {
 <!-- Navigation -->
 <nav class="nav" aria-label="主导航">
 <div class="nav-inner">
-<span class="nav-brand" role="banner"><img src="logo.jpg" alt="NOno Cake" aria-hidden="false">NOno Cake</span>
-<div class="nav-toggle" id="navToggle" onclick="toggleMenu()">
+<span class="nav-brand"><img src="logo.jpg" alt="NOno Cake" aria-hidden="false">NOno Cake</span>
+<button class="nav-toggle" id="navToggle" onclick="toggleMenu()" aria-label="切换菜单" aria-expanded="false">
 <span></span>
 <span></span>
 <span></span>
-</div>
+</button>
 <div class="nav-links" id="navLinks" role="menubar">
 <div class="nav-item" data-menu="menu1" role="none">
 <a href="javascript:void(0)" role="menuitem" aria-haspopup="true" aria-expanded="false">获客方案</a>
@@ -1278,10 +1379,33 @@ details[open] > .action-summary::before {
 </div>
 </nav>
 
-<div class="container">
+<main class="container">
+
+<!-- Hero -->
+<div class="hero">
+    <div class="hero-content">
+        <img src="logo.jpg" alt="NOno Cake" class="hero-logo">
+        <h1 class="hero-title">NOno Cake 私域运营方案</h1>
+        <p class="hero-subtitle">从获客到留存，打造高复购率的私域增长飞轮</p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <span class="hero-stat-number">10+</span>
+                <span class="hero-stat-label">获客策略</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-number">4</span>
+                <span class="hero-stat-label">生命周期阶段</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-number">3</span>
+                <span class="hero-stat-label">执行批次</span>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Table of Contents -->
-<div class="toc" role="navigation" aria-label="目录导航">
+<nav class="toc" aria-label="目录导航">
 <h2 class="toc-title" id="toc-heading">目录</h2>
 <div class="toc-content" aria-labelledby="toc-heading">
 <div class="toc-section">
@@ -1311,12 +1435,12 @@ details[open] > .action-summary::before {
 </ul>
 </div>
 </div>
-</div>
+</nav>
 
 <!-- Chapter 1 -->
-<div class="chapter" id="chapter1">
+<section class="chapter" id="chapter1">
 <div class="chapter-header">
-<h1>NOno Cakes私域运营方案</h1>
+<h1>NOno Cake私域运营方案</h1>
 <p class="chapter-subtitle">不定时更新</p>
 </div>
 <div class="stage-section">
@@ -1377,7 +1501,7 @@ details[open] > .action-summary::before {
 </div>
 </details>
 <details class="action-card">
-<summary class="action-summary">6. 抖音同城获客（这个待定吧）</summary>
+<summary class="action-summary">6. 抖音同城获客 <span class="tag-pending">待定</span></summary>
 <div class="action-content">
 <div class="tag tag-plan">具体的方案落地</div>
 <div class="tag-content">【账号设置】<br>注册抖音账号用个人号带定位发布。账号名与小红书保持一致：「NOno Cake 莆田定制蛋糕」。<br><br>【内容规划】每周发2-3条短视频：<br>• 视频1 蛋糕制作过程（最核心内容）：用手机拍摄奶油打发、抹面、裱花、装饰全过程，加速剪辑成30-60秒。配上轻音乐和文字说明「进口动物奶油 | 低糖配方 | 莆田定制」。这类内容在同城流量中表现最好，因为展示了「手作真实感」<br>• 视频2 做解压视频，比如就拍每个蛋糕抹面的那一段。<br>• 视频3 做成品蛋糕展示，我之前看过一个鲜花的视频，他不露脸就是做一个举花束的动作，然后配合剪辑，那个画面冲击是很强的。我们也可以尝试做一下。<br>• 视频4 幕后花絮：拍店主忙碌的一天、凌晨开始做蛋糕、试新品等，打造「创业日记」人设<br><br>【POI挂载方法】<br>每条视频发布时，点击「添加位置」，搜索「NOno Cake 烘培」，挂载门店POI。抖音同城算法已进入「地理精准匹配+内容价值加权」阶段，带定位的视频会被优先推给附近5-10公里内有相关兴趣的用户。<br><br>【引流到微信】<br>抖音主页简介中写「定制蛋糕请私信」或「V：NonoCake（用谐音或图标代替微信二字）」。用户私信后，回复产品图和价格，引导加微信沟通细节。注意：抖音对导流也有管控，不要在视频画面中直接展示微信号。然后在对话中也少说微信，vx等等敏感词，一样可以发动态去展示微信<br><br>【低成本Dou+投放（可选）】<br>挑选自然数据好的视频（播放量&gt;500），投100元Dou+，选择「同城+18-45岁+女性」，精准覆盖莆田城厢区5公里范围。</div>
@@ -1391,7 +1515,7 @@ details[open] > .action-summary::before {
 <summary class="action-summary">7. 美团/大众点评入驻</summary>
 <div class="action-content">
 <div class="tag tag-plan">具体的方案落地</div>
-<div class="tag-content">【入驻步骤】（1-2天完成）<br>1. 在应用商店下载「美团开店宝」APP<br>2. 注册账号，搜索「NOno Cake」进行店铺认领；如果没有，点击「创建新店铺」<br>3. 上传门头照片、店内环境照片（至少5张，光线要好）<br>4. 上传营业执照和食品经营许可证（必备资质）<br>5. 填写营业时间、联系电话、地址等信息<br>6. 提交审核，一般1-3个工作日通过<br><br>【团购套餐设计】（3个套餐，覆盖不同消费场景）<br>套餐1「新客尝鲜套餐」：2个小甜品（如便当盒+小🗃️蛋糕），原价80元，团购价50元（甚至更低） → 目的：引流到店，降低首次尝试门槛<br>套餐3「定制蛋糕抵用券」：满200减30元，0.01元限时购 → 目的：引导用户购买高利润的定制蛋糕当作一个钩子。也更好的让顾客加微信促成交<br><br>【引导好评策略】<br>顾客取蛋糕时，随包装附赠一张手写小卡片：「如果您觉得好吃，希望您能在美团/大众点评给个好评，截图发给我，下次下单送1个小甜品~」（成本约5-8元，但一个高质量好评价值远超这个成本）。<br>针对LV4以上的大众点评会员（高影响力用户），额外赠送小甜品。LV4以上用户的评价权重是普通用户的3-5倍<br>收到好评后，在店铺页面及时回复，增加互动率。<br><br>【店铺装修优化】<br>上传至少10张高质量图片：门头、店内环境、产品特写（每个主打产品都拍）、包装展示。在商户简介中突出差异化卖点：「进口动物奶油 | 低糖低脂 | 定制蛋糕」。设置营业时间与实际一致，避免顾客白跑一趟。</div>
+<div class="tag-content">【入驻步骤】（1-2天完成）<br>1. 在应用商店下载「美团开店宝」APP<br>2. 注册账号，搜索「NOno Cake」进行店铺认领；如果没有，点击「创建新店铺」<br>3. 上传门头照片、店内环境照片（至少5张，光线要好）<br>4. 上传营业执照和食品经营许可证（必备资质）<br>5. 填写营业时间、联系电话、地址等信息<br>6. 提交审核，一般1-3个工作日通过<br><br>【团购套餐设计】（3个套餐，覆盖不同消费场景）<br>套餐1「新客尝鲜套餐」：2个小甜品（如便当盒+小🍰蛋糕），原价80元，团购价50元（甚至更低） → 目的：引流到店，降低首次尝试门槛<br>套餐2「双人甜蜜套餐」：1个4寸定制蛋糕+2杯饮品兑换券，原价168元，团购价99元 → 目的：提升客单价，覆盖约会/朋友小聚场景<br>套餐3「定制蛋糕抵用券」：满200减30元，0.01元限时购 → 目的：引导用户购买高利润的定制蛋糕当作一个钩子。也更好的让顾客加微信促成交<br><br>【引导好评策略】<br>顾客取蛋糕时，随包装附赠一张手写小卡片：「如果您觉得好吃，希望您能在美团/大众点评给个好评，截图发给我，下次下单送1个小甜品~」（成本约5-8元，但一个高质量好评价值远超这个成本）。<br>针对LV4以上的大众点评会员（高影响力用户），额外赠送小甜品。LV4以上用户的评价权重是普通用户的3-5倍<br>收到好评后，在店铺页面及时回复，增加互动率。<br><br>【店铺装修优化】<br>上传至少10张高质量图片：门头、店内环境、产品特写（每个主打产品都拍）、包装展示。在商户简介中突出差异化卖点：「进口动物奶油 | 低糖低脂 | 定制蛋糕」。设置营业时间与实际一致，避免顾客白跑一趟。</div>
 <div class="tag tag-result">预期结果</div>
 <div class="tag-content">入驻后1-2个月内，预计每月获得20-50个平台订单。好评积累到10条以上后，店铺在本地搜索排名会明显提升。19.9元套餐预计每月带来30-60个新客到店。</div>
 <div class="tag tag-reason">为什么这么做</div>
@@ -1399,7 +1523,7 @@ details[open] > .action-summary::before {
 </div>
 </details>
 <details class="action-card">
-<summary class="action-summary">9. 隐藏菜单/暗号玩法</summary>
+<summary class="action-summary">8. 隐藏菜单/暗号玩法</summary>
 <div class="action-content">
 <div class="tag tag-plan">具体的方案落地</div>
 <div class="tag-content">【设计隐藏菜单】（3款产品循环推出）<br>每月推出1款「隐藏款」产品，不在正常菜单上显示，只有知道暗号的顾客才能点。举例：<br>• 1月隐藏款：「云朵舒芙蕾」——暗号「今天天气真好」<br>• 2月隐藏款：「玫瑰荔枝慕斯」——暗号「情人节快乐」<br>• 3月隐藏款：「抹茶白巧千层」——暗号「春天来了」<br>隐藏款定价与常规产品持平或略低（不靠隐藏款赚钱，靠它制造话题和复购动力）。每款隐藏款限量供应（如每天只做5份），制造稀缺感。<br><br>【发布方式】<br>• 朋友圈发布：发一张模糊的蛋糕局部图（只露出颜色和质感），配文：「本月隐藏款已上线，老客户私信对暗号解锁~」不直接说是什么产品，引发好奇心<br>• 小红书发布：发一篇「莆田隐藏蛋糕店 | 对暗号才能点的秘密菜单」笔记，展示隐藏款的精美图片，但不透露暗号，引导用户私信咨询（同时引流到微信）<br>• 社群内发布：在客户群里发「暗号提示」，如「暗号和一种花有关」，让群友猜，增加互动<br><br>【规则设计】<br>只有微信好友才能解锁（引导加微信）。每人每次限点1份隐藏款。隐藏款每月更换，过期不候。</div>
@@ -1410,7 +1534,7 @@ details[open] > .action-summary::before {
 </div>
 </details>
 <details class="action-card">
-<summary class="action-summary">10.荐新有礼</summary>
+<summary class="action-summary">9. 荐新有礼</summary>
 <div class="action-content">
 <div class="tag tag-plan">具体的方案落地</div>
 <div class="tag-content">【阶梯式转介绍奖励机制】<br>第一阶：推荐1人下单 → 送1个小甜品（价值15-20元）+手写感谢卡 → 成本约8元<br>第二阶：累计推荐3人下单 → 送价值50元甜品礼盒 → 成本约20元<br>第三阶：累计推荐5人下单 → 当月消费享8折 → 成本约15-30元（按客单价算）<br>第四阶：累计推荐8人下单 → 升级VIP会员+年度服务大礼包 → 成本约30-50元<br><br>【执行方式】<br>机制说明：在客户群和朋友圈发布活动海报：「NOno Cake老友计划——好甜品要和朋友分享」。写明推荐规则和奖励。<br>追踪方式：新客户下单时询问「是谁推荐您来的？」，记录推荐人。或在朋友圈分享海报时带上专属暗号（每个老客户有不同的暗号），新客户下单时报暗号即可。<br>奖励发放：推荐成功后，第一时间私信推荐人：「XX姐，您推荐的朋友下单啦~感谢信任！送您一个小甜品，下次来取蛋糕时一并带上哦~」<br>公开表彰：每月在朋友圈/群里发一次「本月最佳推荐官」，列出推荐最多的3位客户（征得同意后），给予额外奖励，激发攀比心理。<br><br>【低成本裂变活动】（每月1次）<br>• 集赞送蛋糕：发一条朋友圈「转发这条+集满20个赞，截图发我，送1个小慕斯杯」，成本约5元/个，但可以触达每个参与者20个微信好友<br>• 拼团活动：3人成团享8折，鼓励客户拉朋友一起下单。集赞送小蛋糕活动可以「7天引爆周边圈层」<br><br>【转介绍双方都有礼】<br>老客推荐新客户<br>老客奖励：余额(存入顾客小程序账户，下单消费可用)，优惠券(满减、折扣、商品兑换券)<br>新客奖励：余额，积分，优惠券（新人立减券、折扣券、首单特惠）</div>
@@ -1476,61 +1600,6 @@ details[open] > .action-summary::before {
 <div class="tag-content">生日蛋糕复购率（第二年继续在NOno Cake订生日蛋糕）达到60%以上。生日客户转介绍率预计30%以上（因为生日蛋糕天然具有社交展示属性）。生日营销贡献全年定制蛋糕营收的40%-50%。</div>
 <div class="tag tag-reason">为什么这么做</div>
 <div class="tag-content">生日是蛋糕店最核心的消费场景，数据显示生日蛋糕占蛋糕店营收的60%以上。提前7天推送的转化率比当天推送高3倍（来源：烘焙店会员生日提醒功能研究，提前3-7天提醒+专属优惠的转化效果最佳）。生日蛋糕的「社交展示」属性天然适合口碑传播，一个生日蛋糕可以被10-20个参加聚会的人看到。</div>
-</div>
-</details>
-<details class="action-card">
-<summary class="action-summary">1. 小程序上线</summary>
-<div class="action-content">
-<div class="tag tag-plan">具体的方案落地</div>
-<div class="tag-content">实现在线下单、积分查询、会员卡、优惠券自助领取、以及门店管理、客户管理等功能。<br>核心功能：产品展示+在线下单+积分系统+会员卡+优惠券+订单管理。客户可以24小时自助浏览和下单，不受店主在线时间限制。</div>
-<div class="tag tag-result">预期结果</div>
-<div class="tag-content">客户自助下单率提升到60%以上，减少沟通成本。</div>
-<div class="tag tag-reason">为什么这么做</div>
-<div class="tag-content">小程序让客户可以24小时自助浏览和下单，不受店主在线时间限制。500+客户量时，纯微信沟通效率太低，小程序可以大幅减少重复沟通。</div>
-</div>
-</details>
-<details class="action-card">
-<summary class="action-summary">2. 内容矩阵化</summary>
-<div class="action-content">
-<div class="tag tag-plan">具体的方案落地</div>
-<div class="tag-content">小红书从1个号扩展到2-3个号（主号+员工号），抖音保持1个号但增加发布频率到每周5条。开始尝试直播（每周1次，展示蛋糕制作过程）。全网粉丝目标：5000+，每月新增微信好友100+。</div>
-<div class="tag tag-result">预期结果</div>
-<div class="tag-content">全网粉丝达到5000+，每月新增微信好友100+。</div>
-<div class="tag tag-reason">为什么这么做</div>
-<div class="tag-content">多账号矩阵可以覆盖更多人群，直播是2025-2026年增长最快的获客方式。单账号流量天花板有限，矩阵化运营可以突破增长瓶颈。</div>
-</div>
-</details>
-<details class="action-card">
-<summary class="action-summary">3. 异业联盟升级</summary>
-<div class="action-content">
-<div class="tag tag-plan">具体的方案落地</div>
-<div class="tag-content">从单点合作升级为「联盟套餐」。与周边奶茶店、花店、摄影工作室联合推出「生日派对套餐」（蛋糕+奶茶+花束+拍照），共享客户资源。利益分配机制：明确引流分佣、成本分摊、利润分配规则，确保双方都有动力持续推进。</div>
-<div class="tag tag-result">预期结果</div>
-<div class="tag-content">每月通过联盟获得30-50个新客户。</div>
-<div class="tag tag-reason">为什么这么做</div>
-<div class="tag-content">联盟套餐的客单价更高，客户体验更完整，各方都能受益。异业合作成功案例显示，实施跨界合作后，线上销售额占比平均提升20%，顾客回头率平均提升25%。</div>
-</div>
-</details>
-<details class="action-card">
-<summary class="action-summary">4. 社群裂变</summary>
-<div class="action-content">
-<div class="tag tag-plan">具体的方案落地</div>
-<div class="tag-content">每个群发展到80人后开新群，老群成员推荐3人入群送小甜品。目标建立5-8个活跃社群。社群总人数达到400-600人，月复购贡献营收30%+。</div>
-<div class="tag tag-result">预期结果</div>
-<div class="tag-content">社群总人数达到400-600人，月复购贡献营收30%+。</div>
-<div class="tag tag-reason">为什么这么做</div>
-<div class="tag-content">社群是私域运营的核心阵地，规模效应会显著降低单客运营成本。小群（50-80人）的活跃度远高于大群。</div>
-</div>
-</details>
-<details class="action-card">
-<summary class="action-summary">5. 本地KOL合作</summary>
-<div class="action-content">
-<div class="tag tag-plan">具体的方案落地</div>
-<div class="tag-content">找莆田本地3-5个粉丝在5000-20000的探店博主/宝妈博主，免费送蛋糕请他们体验，换取1条小红书/抖音笔记。合作话术：「你好，我是莆田城厢区新开的NOno Cake，主打进口动物奶油低糖定制蛋糕，想邀请你来免费体验一下，如果觉得好吃的话希望能帮忙发一条分享~」</div>
-<div class="tag tag-result">预期结果</div>
-<div class="tag-content">每条笔记带来50-200个曝光，转化10-30个咨询。</div>
-<div class="tag tag-reason">为什么这么做</div>
-<div class="tag-content">本地KOL的信任背书比广告更有效，且成本仅为产品成本（30-50元）。KOC（关键意见消费者）的真实体验笔记比品牌广告的转化率高3-5倍。</div>
 </div>
 </details>
 </div>
@@ -1662,10 +1731,10 @@ details[open] > .action-summary::before {
 </details>
 </div>
 
-</div>
+</section>
 
 <!-- Chapter 2 -->
-<div class="chapter" id="chapter2">
+<section class="chapter" id="chapter2">
 <div class="chapter-header">
 <h1>客户生命周期管理</h1>
 </div>
@@ -1891,14 +1960,14 @@ details[open] > .action-summary::before {
 </details>
 </div>
 
-</div>
+</section>
 
 <!-- Chapter 3 -->
-<div class="chapter" id="chapter3">
+<section class="chapter" id="chapter3">
 <div class="chapter-header">
 <h1>执行优先级时间表</h1>
 </div>
-<div class="note">备注：此时间表仅供参考，ai生成根据你自己的时间来安排。如果忙不过可以找我</div>
+<div class="note">备注：此时间表仅供参考，请根据实际经营情况灵活调整安排。如需协助可随时沟通。</div>
 <div class="stage-section">
 <h2 class="stage-title" id="s3-1">第一批<br>（立即启动）</h2>
 <details class="action-card">
@@ -2035,9 +2104,9 @@ details[open] > .action-summary::before {
 </details>
 </div>
 
-</div>
+</section>
 
-</div>
+</main>
 
 <!-- Back to top -->
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8679;</button>
@@ -2126,14 +2195,23 @@ details[open] > .action-summary::before {
 })();
 
 // Back to top button
-window.addEventListener('scroll', function() {
-    var btn = document.getElementById('backToTop');
-    if (window.scrollY > 300) {
-        btn.classList.add('show');
-    } else {
-        btn.classList.remove('show');
-    }
-});
+(function() {
+    var ticking = false;
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                var btn = document.getElementById('backToTop');
+                if (window.scrollY > 300) {
+                    btn.classList.add('show');
+                } else {
+                    btn.classList.remove('show');
+                }
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+})();
 
 // Nav hint - show once for new visitors
 (function() {
@@ -2169,6 +2247,31 @@ window.addEventListener('scroll', function() {
     var searchButton = document.getElementById('searchButton');
     var searchResults = document.getElementById('searchResults');
     var searchContainer = document.getElementById('searchContainer');
+    var debounceTimer = null;
+
+    // Smart truncation: prefer breaking at sentence-ending punctuation
+    function smartTruncate(text, maxLen) {
+        if (text.length <= maxLen) return text;
+        var truncated = text.substring(0, maxLen);
+        var lastPunct = -1;
+        var puncts = ['\u3002', '\uff1b', '\uff0c', '.', ';', ','];
+        for (var i = 0; i < puncts.length; i++) {
+            var idx = truncated.lastIndexOf(puncts[i]);
+            if (idx > lastPunct) lastPunct = idx;
+        }
+        if (lastPunct > maxLen * 0.3) {
+            return truncated.substring(0, lastPunct + 1) + '...';
+        }
+        return truncated + '...';
+    }
+
+    // Highlight matching keywords with <mark> tags
+    function highlightText(text, query) {
+        if (!query) return text;
+        var escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        var regex = new RegExp('(' + escaped + ')', 'gi');
+        return text.replace(regex, '<mark>$1</mark>');
+    }
 
     function performSearch() {
         var query = searchInput.value.trim().toLowerCase();
@@ -2182,16 +2285,43 @@ window.addEventListener('scroll', function() {
         // Search in action cards
         var actionCards = document.querySelectorAll('.action-card');
         var results = [];
-        
         actionCards.forEach(function(card) {
-            var title = card.querySelector('.action-summary').textContent.trim().toLowerCase();
-            var content = card.querySelector('.action-content').textContent.trim().toLowerCase();
+            var summaryEl = card.querySelector('.action-summary');
+            var contentEl = card.querySelector('.action-content');
+            var title = summaryEl ? summaryEl.textContent.trim() : '';
+            var content = contentEl ? contentEl.textContent.trim() : '';
             
-            if (title.includes(query) || content.includes(query)) {
+            if (title.toLowerCase().includes(query) || content.toLowerCase().includes(query)) {
                 results.push({
-                    title: card.querySelector('.action-summary').textContent.trim(),
-                    content: card.querySelector('.action-content').textContent.trim().substring(0, 100) + '...',
+                    title: title,
+                    content: content,
                     element: card
+                });
+            }
+        });
+
+        // Search in stage titles
+        var stageTitles = document.querySelectorAll('.stage-title');
+        stageTitles.forEach(function(el) {
+            var text = el.textContent.trim();
+            if (text.toLowerCase().includes(query)) {
+                results.push({
+                    title: text,
+                    content: '',
+                    element: el
+                });
+            }
+        });
+
+        // Search in chapter headers
+        var chapterHeaders = document.querySelectorAll('.chapter-header h1');
+        chapterHeaders.forEach(function(el) {
+            var text = el.textContent.trim();
+            if (text.toLowerCase().includes(query)) {
+                results.push({
+                    title: text,
+                    content: '',
+                    element: el
                 });
             }
         });
@@ -2201,10 +2331,9 @@ window.addEventListener('scroll', function() {
                 var resultItem = document.createElement('div');
                 resultItem.className = 'search-result-item';
                 resultItem.role = 'listitem';
-                resultItem.innerHTML = `
-                    <div class="search-result-title">${result.title}</div>
-                    <div class="search-result-content">${result.content}</div>
-                `;
+                resultItem.innerHTML = 
+                    '<div class="search-result-title">' + highlightText(result.title, searchInput.value.trim()) + '</div>' +
+                    (result.content ? '<div class="search-result-content">' + highlightText(smartTruncate(result.content, 120), searchInput.value.trim()) + '</div>' : '');
                 
                 resultItem.addEventListener('click', function() {
                     // Scroll to the element with offset
@@ -2224,7 +2353,7 @@ window.addEventListener('scroll', function() {
             var noResultItem = document.createElement('div');
             noResultItem.className = 'search-result-item';
             noResultItem.role = 'listitem';
-            noResultItem.innerHTML = `<div class="search-result-title">未找到结果</div>`;
+            noResultItem.innerHTML = '<div class="search-result-title">未找到结果</div>';
             searchResults.appendChild(noResultItem);
             searchResults.classList.add('show');
         }
@@ -2235,6 +2364,12 @@ window.addEventListener('scroll', function() {
         if (e.key === 'Enter') {
             performSearch();
         }
+    });
+
+    // Real-time search with 300ms debounce
+    searchInput.addEventListener('input', function() {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(performSearch, 300);
     });
     
     // Close search results when clicking outside
@@ -2251,7 +2386,20 @@ function toggleMenu() {
     var navLinks = document.getElementById('navLinks');
     navToggle.classList.toggle('active');
     navLinks.classList.toggle('active');
+    var isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+    navToggle.setAttribute('aria-expanded', !isExpanded);
 }
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(e) {
+    var navToggle = document.getElementById('navToggle');
+    var navLinks = document.getElementById('navLinks');
+    if (!navLinks.classList.contains('active')) return;
+    if (navToggle.contains(e.target) || navLinks.contains(e.target)) return;
+    navToggle.classList.remove('active');
+    navLinks.classList.remove('active');
+    navToggle.setAttribute('aria-expanded', 'false');
+});
 
 // Close menu when clicking on a link
 document.querySelectorAll('.nav-links a').forEach(function(link) {
@@ -2260,6 +2408,7 @@ document.querySelectorAll('.nav-links a').forEach(function(link) {
         var navLinks = document.getElementById('navLinks');
         navToggle.classList.remove('active');
         navLinks.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
     });
 });
 
